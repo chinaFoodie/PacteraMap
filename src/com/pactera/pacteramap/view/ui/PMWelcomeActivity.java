@@ -128,6 +128,8 @@ public class PMWelcomeActivity extends PMActivity implements OnClickListener,
 		findViewById(R.id.ll_main_route_plan).setOnClickListener(this);
 		findViewById(R.id.ll_main_work_track).setOnClickListener(this);
 		findViewById(R.id.ll_main_message_center).setOnClickListener(this);
+		findViewById(R.id.ll_main_integral_events).setOnClickListener(this);
+		findViewById(R.id.ll_main_financial_products).setOnClickListener(this);
 		civLeftMenu = (CircleImageView) menu
 				.findViewById(R.id.left_menu_person_info_head);
 		// 头像图片存储取值
@@ -179,20 +181,33 @@ public class PMWelcomeActivity extends PMActivity implements OnClickListener,
 		case R.id.person_info_head:
 			menu.toggle();
 			break;
+		// 贷款业务
 		case R.id.ll_main_loan_business:
 			T.showShort(this, "贷款业务还在开发中，敬请期待");
 			break;
+		// 备忘录
 		case R.id.ll_main_remark:
 			PMActivityUtil.next(this, PMRemarkActivity.class);
 			break;
+		// 路径规划
 		case R.id.ll_main_route_plan:
 			PMActivityUtil.next(this, PMRoutePlanActivity.class);
 			break;
+		// 工作轨迹
 		case R.id.ll_main_work_track:
 			PMActivityUtil.next(this, PMWorkTrackActivity.class);
 			break;
+		// 消息中心
 		case R.id.ll_main_message_center:
 			PMActivityUtil.next(this, PMNotificationHubActivity.class);
+			break;
+		// 理财产品
+		case R.id.ll_main_financial_products:
+			T.showShort(this, "理财产品还在开发中，敬请期待");
+			break;
+		// 积分活动
+		case R.id.ll_main_integral_events:
+			T.showShort(this, "积分活动还在开发中，敬请期待");
 			break;
 		// 点击更换头像
 		case R.id.left_menu_person_info_head:

@@ -21,5 +21,13 @@
     <color name="actionsheet_blue">#037BFF</color>
     <color name="actionsheet_red">#FD4A2E</color>
     <color name="actionsheet_gray">#8F8F8F</color>
+    <!-- welcome -->
+    <color name="wel_work_track">#ef6d6d</color>
+    <color name="wel_integral_events">#8c22e5</color>
+    <color name="wel_route_plan">#284a9f</color>
+    <color name="wel_financial_products">#24ab87</color>
+    <color name="wel_loan_business">#3cb3f1</color>
+    <color name="wel_remark">#1bc25a</color>
+    <color name="wel_message_center">#efa413</color>
 
 </resources>
