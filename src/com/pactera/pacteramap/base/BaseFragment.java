@@ -1,14 +1,13 @@
 package com.pactera.pacteramap.base;
 
-import com.pactera.pacteramap.business.PMAdapterCallback;
-import com.pactera.pacteramap.business.PMInterface;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.pactera.pacteramap.business.PMInterface;
 
 /**
  * fragment基类
