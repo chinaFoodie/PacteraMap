@@ -13,11 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pactera.pacteramap.R;
-import com.pactera.pacteramap.util.PMActivityUtil;
 import com.pactera.pacteramap.util.T;
-import com.pactera.pacteramap.view.ui.PMIndexActivity;
 import com.pactera.pacteramap.view.ui.PMRemarkActivity;
-import com.pactera.pacteramap.view.ui.PMWorkTrackActivity;
 import com.pactera.pacteramap.vo.PMWorkTrack.AddressInfo;
 
 /**
