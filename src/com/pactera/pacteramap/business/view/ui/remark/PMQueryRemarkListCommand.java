@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 
 import com.pactera.pacteramap.PMApplication;
 import com.pactera.pacteramap.business.PMCommand;

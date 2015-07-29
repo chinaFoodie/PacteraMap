@@ -8,7 +8,6 @@ import java.util.List;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.PointF;
@@ -48,8 +47,6 @@ import com.pactera.pacteramap.util.PMGsonUtil;
 import com.pactera.pacteramap.util.T;
 import com.pactera.pacteramap.view.component.PMCalendar;
 import com.pactera.pacteramap.view.component.PMCalendar.OnCalendarClickListener;
-import com.pactera.pacteramap.view.component.MySlidingMenu;
-import com.pactera.pacteramap.view.ui.PMMainActivity;
 import com.pactera.pacteramap.view.ui.PMRemarkActivity;
 import com.pactera.pacteramap.vo.PMWorkTrack;
 import com.pactera.pacteramap.vo.PMWorkTrack.AddressInfo;
