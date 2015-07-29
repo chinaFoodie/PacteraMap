@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@drawable/corners_background" >
+
+        <ImageView
+            android:id="@+id/img_audio_logo"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/calendar_date_focused" />
+
+        <LinearLayout
+            android:id="@+id/ll_radio_info"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@id/img_audio_logo"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tv_audio_name"
+                android:layout_width="fill_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="201312312"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/tv_audio_size"
+                android:layout_width="fill_parent"
+                android:layout_height="35dp"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="2020k"
+                android:textSize="22sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="40dp"
+            android:layout_height="80dp"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/ll_radio_info"
+            android:background="@color/white"
+            android:visibility="gone" >
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:src="@drawable/iconfontplay" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

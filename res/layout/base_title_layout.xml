@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
+    android:background="@drawable/title_bg" >
+
+    <LinearLayout
+        android:id="@+id/ll_img_base_left"
+        android:layout_width="60dp"
+        android:layout_height="45dp"
+        android:layout_alignParentLeft="true"
+        android:visibility="gone" >
+
+        <ImageView
+            android:id="@+id/img_base_left"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_tv_base_left"
+        android:layout_width="60dp"
+        android:layout_height="45dp"
+        android:layout_alignParentLeft="true"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/tv_base_left"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:text="@string/come_back"
+            android:textColor="#ffffffff"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_centerInParent="true" >
+
+        <TextView
+            android:id="@+id/tv_mid_title"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:text="@string/mid_title"
+            android:textColor="#ffffffff"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_tv_base_right"
+        android:layout_width="60dp"
+        android:layout_height="45dp"
+        android:layout_alignParentRight="true"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/tv_base_right"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:text="@string/right_more"
+            android:textColor="#ffffffff"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_img_base_right"
+        android:layout_width="60dp"
+        android:layout_height="45dp"
+        android:layout_alignParentRight="true"
+        android:visibility="gone" >
+
+        <ImageView
+            android:id="@+id/img_base_right"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+    </LinearLayout>
+
+</RelativeLayout>

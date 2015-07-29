@@ -1,0 +1,21 @@
+<resources>
+
+    <string name="app_name">PacteraMap</string>
+    <string name="come_back">返回</string>
+    <string name="mid_title">中间标题</string>
+    <string name="right_more">更多</string>
+    <string name="start">开始</string>
+    <string name="finish">完成</string>
+    <string name="add_remark_title_input">请输入标题</string>
+    <string name="error_no_sdcard">没有SD卡，无法存储录音数据</string>
+    <string name="error_state_record">正在录音中，请先停止录音</string>
+    <string name="error_unknown">无法识别的错误</string>
+    <string name="start_audio">点击开始录音</string>
+    <string name="audioing">正在录音中....</string>
+    <string name="content_description">&#160;</string>
+    <string name="open_all_content">展开全文</string>
+    <string name="desc_list_item_icon">SlidingMenu</string>
+    <string name="refresh">刷新</string>
+    <string name="person">个人中心</string>
+
+</resources>

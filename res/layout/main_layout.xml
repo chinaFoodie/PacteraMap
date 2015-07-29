@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.pactera.pacteramap.view.component.MySlidingMenu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:archer="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/left_menu"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent"
+    archer:rightPadding="100dp" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal" >
+
+        <include layout="@layout/layout_menu" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white" >
+
+            <include
+                android:id="@+id/include_main"
+                layout="@layout/base_title_layout" />
+
+            <FrameLayout
+                android:id="@+id/fl_main"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@id/include_main"
+                android:layout_marginBottom="50dp" >
+            </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_main_bottom"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/remark_red_title"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/tv_tab_remark"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="备忘录"
+                    android:textColor="#ff6699"
+                    android:textSize="18dp" />
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4dp"
+                    android:background="#d3d7d4" />
+
+                <TextView
+                    android:id="@+id/tv_tab_work_track"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="工作轨迹"
+                    android:textSize="18dp" />
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4dp"
+                    android:background="#d3d7d4" />
+
+                <TextView
+                    android:id="@+id/tv_tab_route_plan"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="路线规划"
+                    android:textSize="18dp" />
+
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="fill_parent"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4dp"
+                    android:background="#d3d7d4" />
+
+                <TextView
+                    android:id="@+id/tv_tab_loan"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="贷款业务"
+                    android:textSize="18dp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+</com.pactera.pacteramap.view.component.MySlidingMenu>

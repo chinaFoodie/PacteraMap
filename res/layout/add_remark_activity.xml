@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical" >
+
+    <include layout="@layout/base_title_layout" />
+
+    <ScrollView
+        android:id="@+id/add_remark_scrollview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/shape_no_corner_without_bottom" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="4dp"
+            android:orientation="vertical" >
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/shape_no_corner_without_bottom"
+                android:hint="@string/add_remark_title_input"
+                android:paddingLeft="4dp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="6dp"
+                android:background="#ffffffff"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/img_add_remark_image"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/iconfontimage" />
+
+                <ImageView
+                    android:id="@+id/img_add_remark_photo"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/iconfontpaizhao" />
+
+                <ImageView
+                    android:id="@+id/img_add_remark_radio"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/iconfontluyin" />
+
+                <ImageView
+                    android:id="@+id/img_add_remark_psw"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/iconfontmima" />
+
+                <ImageView
+                    android:id="@+id/img_add_remark_location"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/iconfontdingwei2" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="60dp"
+                android:background="@drawable/shape_no_corner_without_bottom" >
+
+                <EditText
+                    android:id="@+id/et_add_reamark_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/shape_no_corner_without_bottom"
+                    android:gravity="top"
+                    android:minLines="10"
+                    android:padding="4dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_radio"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="30dp"
+                android:background="#e6e6e6"
+                android:visibility="gone" >
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/calendar_date_focused" />
+
+                <TextView
+                    android:id="@+id/tv_audio_ing"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/start_audio" />
+
+                <Button
+                    android:id="@+id/btn_audio_finish"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:text="@string/start" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

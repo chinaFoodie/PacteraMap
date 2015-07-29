@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="grey">#f2f2f2</color>
+    <color name="title_bg">#666666</color>
+    <color name="white">#ffffff</color>
+    <color name="remark_red_title">#ea2d6e</color>
+    <color name="open_all_content">#ffab40</color>
+    <color name="list_item_title">#fff</color>
+    <color name="list_background">#303030</color>
+    <color name="list_background_pressed">#992416</color>
+    <color name="list_divider">#272727</color>
+    <color name="work_track">#455a64</color>
+    <color name="loan_business">#3f51b5</color>
+    <color name="route_plan">#00bcd4</color>
+    <color name="remark">#607d8b</color>
+    <!-- iso dialog -->
+    <color name="trans">#00000000</color>
+    <color name="black">#000000</color>
+    <color name="alertdialog_line">#c6c6c6</color>
+    <color name="actionsheet_blue">#037BFF</color>
+    <color name="actionsheet_red">#FD4A2E</color>
+    <color name="actionsheet_gray">#8F8F8F</color>
+
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android"> 
+    <item android:state_pressed="true" android:drawable="@drawable/iconfontxinfeng2_down" /><!-- 按下 -->  
+    <item android:state_focused="true" android:drawable="@drawable/iconfontxinfeng2_up" /><!-- 获取焦点 -->
+    <item android:drawable="@drawable/iconfontxinfeng2_up" /><!-- 弹起 --> 
+ </selector>

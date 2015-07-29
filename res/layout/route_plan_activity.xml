@@ -1,0 +1,179 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/ll_node"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <include layout="@layout/base_title_layout" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+
+            <com.baidu.mapapi.map.MapView
+                android:id="@+id/route_plan_map"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+            </com.baidu.mapapi.map.MapView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+
+            <RelativeLayout
+                android:id="@+id/rl_route_plan_guide"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:background="@color/white" >
+
+                <ImageView
+                    android:id="@+id/route_plan_bus"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:clickable="true"
+                    android:onClick="SearchButtonProcess"
+                    android:src="@drawable/route_plan_bus" />
+
+                <ImageView
+                    android:id="@+id/route_plan_car"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/route_plan_bus"
+                    android:clickable="true"
+                    android:onClick="SearchButtonProcess"
+                    android:src="@drawable/route_plan_car" />
+
+                <ImageView
+                    android:id="@+id/route_plan_walk"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/route_plan_car"
+                    android:clickable="true"
+                    android:onClick="SearchButtonProcess"
+                    android:src="@drawable/route_plan_walk" />
+
+                <TextView
+                    android:id="@+id/tv_route_plan_pre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/route_plan_walk"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:onClick="nodeClick"
+                    android:text="上一个" />
+
+                <TextView
+                    android:id="@+id/tv_route_plan_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/tv_route_plan_pre"
+                    android:clickable="true"
+                    android:gravity="center_vertical"
+                    android:onClick="nodeClick"
+                    android:text="下一个" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@id/rl_route_plan_guide"
+                android:layout_margin="10dp"
+                android:background="#e2e2e2"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp" >
+
+                    <ImageView
+                        android:id="@+id/img_route_plan_start"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/route_plan_start" />
+
+                    <EditText
+                        android:id="@+id/et_route_plan_start"
+                        android:layout_width="fill_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/img_route_plan_start"
+                        android:background="@color/white"
+                        android:hint="请输入起点位置"
+                        android:paddingLeft="6dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp" >
+
+                    <ImageView
+                        android:id="@+id/img_route_plan_end"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/route_plan_end" />
+
+                    <EditText
+                        android:id="@+id/et_route_plan_end"
+                        android:layout_width="fill_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/img_route_plan_end"
+                        android:background="@color/white"
+                        android:hint="请输入终点位置"
+                        android:paddingLeft="6dp" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="搜索导航"
+                        android:textColor="#ffffff"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="启动导航"
+                        android:textColor="#ffffff"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="保存导航"
+                        android:textColor="#ffffff"
+                        android:textSize="18sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

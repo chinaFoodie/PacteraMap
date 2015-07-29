@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/grey" >
+
+    <LinearLayout
+        android:id="@+id/ll_remark_list_item"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="20dp" >
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/remark_list_item_first_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="标题一"
+                android:textColor="@color/remark_red_title"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/remark_list_item_first_content"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/remark_list_item_first_title"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@string/audioing" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/remark_list_item_first_img_content"
+                android:layout_width="120dp"
+                android:layout_height="100dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/remark_list_right_pic" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/ll_remark_list_item"
+        android:background="@color/grey" >
+
+        <TextView
+            android:id="@+id/remark_list_item_first_read_all"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:text="@string/open_all_content"
+            android:textColor="@color/open_all_content" />
+
+        <TextView
+            android:id="@+id/remark_list_item_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="2015-07-14 16:23:50" />
+
+        <ImageView
+            android:id="@+id/remark_list_item_first_img_speaker"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/remark_list_item_date"
+            android:src="@drawable/remark_list_item_speaker" />
+    </RelativeLayout>
+
+</RelativeLayout>
