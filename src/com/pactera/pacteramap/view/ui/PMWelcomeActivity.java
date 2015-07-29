@@ -20,8 +20,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pactera.pacteramap.R;
+import com.pactera.pacteramap.config.PMShareKey;
 import com.pactera.pacteramap.util.ImageLoaderManager;
 import com.pactera.pacteramap.util.PMActivityUtil;
+import com.pactera.pacteramap.util.PMSharePreferce;
 import com.pactera.pacteramap.util.PMUtil;
 import com.pactera.pacteramap.util.T;
 import com.pactera.pacteramap.view.PMActivity;
@@ -58,6 +60,7 @@ public class PMWelcomeActivity extends PMActivity implements OnClickListener,
 	public static final int SELECT_PIC_WEL_PHOTO = 7001;
 	// 启动本地相册返回码
 	public static final int SELECT_PIC_WEL_PIC = 7002;
+	private PMSharePreferce share;
 	// 更新UI数据操作
 	Handler handler = new Handler() {
 
@@ -74,6 +77,7 @@ public class PMWelcomeActivity extends PMActivity implements OnClickListener,
 				circleImageView.setImageBitmap(PMUtil.compressBmpFromBmp(PMUtil
 						.rotateBitmap(degreePic,
 								PMUtil.compressImageFromFile(picPath))));
+				share.setCache(PMShareKey.USERAVATAR, picPath);
 				break;
 			case SELECT_PIC_WEL_PHOTO:
 				String tempFile = msg.obj.toString();
@@ -84,6 +88,7 @@ public class PMWelcomeActivity extends PMActivity implements OnClickListener,
 				circleImageView.setImageBitmap(PMUtil.compressBmpFromBmp(PMUtil
 						.rotateBitmap(degreePhoto,
 								PMUtil.compressImageFromFile(tempFile))));
+				share.setCache(PMShareKey.USERAVATAR, tempFile);
 				break;
 			default:
 				break;
@@ -96,6 +101,7 @@ public class PMWelcomeActivity extends PMActivity implements OnClickListener,
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.welcome_activity);
 		imageLoader = ImageLoaderManager.getInstance();
+		share = PMSharePreferce.getInstance(this);
 		init();
 	}
 
@@ -124,6 +130,17 @@ public class PMWelcomeActivity extends PMActivity implements OnClickListener,
 		findViewById(R.id.ll_main_message_center).setOnClickListener(this);
 		civLeftMenu = (CircleImageView) menu
 				.findViewById(R.id.left_menu_person_info_head);
+		// 头像图片存储取值
+		if (!"".equals(share.getString(PMShareKey.USERAVATAR))) {
+			int degreePic = PMUtil.readPicDegree(share
+					.getString(PMShareKey.USERAVATAR));
+			civLeftMenu.setImageBitmap(PMUtil.compressBmpFromBmp(PMUtil
+					.rotateBitmap(degreePic, PMUtil.compressImageFromFile(share
+							.getString(PMShareKey.USERAVATAR)))));
+			circleImageView.setImageBitmap(PMUtil.compressBmpFromBmp(PMUtil
+					.rotateBitmap(degreePic, PMUtil.compressImageFromFile(share
+							.getString(PMShareKey.USERAVATAR)))));
+		}
 		civLeftMenu.setOnClickListener(this);
 		tvUserName = (TextView) menu.findViewById(R.id.tv_left_menu_username);
 		tvUserName.setText("Archer");

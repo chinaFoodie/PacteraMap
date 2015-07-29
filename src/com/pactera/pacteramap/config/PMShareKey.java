@@ -9,4 +9,5 @@ package com.pactera.pacteramap.config;
  */
 public class PMShareKey {
 	public static String USERNAME = "user_name";
+	public static String USERAVATAR = "user_avatar";
 }
