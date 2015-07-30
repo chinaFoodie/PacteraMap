@@ -11,7 +11,7 @@ import com.pactera.pacteramap.sqlite.PMSQLiteResult;
 /**
  * 通知消息表
  * 
- * @author WMF
+ * @author ChunfaLee
  * 
  */
 public class PMNotificationMessageVO extends PMSQLiteBase {

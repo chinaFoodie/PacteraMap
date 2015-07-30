@@ -13,7 +13,7 @@ import com.pactera.pacteramap.view.PMActivity;
 
 /**
  * 通知消息详情
- * @author WMF
+ * @author ChunfaLee
  *
  */
 public class PMNotificationDetailActivity extends PMActivity {

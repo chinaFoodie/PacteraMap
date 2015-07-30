@@ -2,7 +2,7 @@ package com.pactera.pacteramap.vo;
 
 /**
  * 用户子表
- * @author WMF
+ * @author ChunfaLee
  *
  */
 public class PMUserSublistVO{

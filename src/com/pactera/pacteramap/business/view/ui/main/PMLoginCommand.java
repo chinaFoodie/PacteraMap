@@ -14,7 +14,7 @@ import com.pactera.pacteramap.vo.PMUserSublistVO;
 
 /**
  * 用户登录
- * @author WMF
+ * @author ChunfaLee
  *
  */
 public class PMLoginCommand extends PMCommand {

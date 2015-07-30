@@ -6,7 +6,7 @@ import java.security.NoSuchAlgorithmException;
 /**
  * 加密算法使用SHA-256
  * D5,SHA-1,SHA-256
- * @author WMF
+ * @author ChunfaLee
  * 
  */
 public class PMSHA256Util {

@@ -1,11 +1,15 @@
 package com.pactera.pacteramap;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 
+import com.baidu.lbsapi.auth.LBSAuthManagerListener;
+import com.baidu.navisdk.BNaviEngineManager.NaviEngineInitListener;
+import com.baidu.navisdk.BaiduNaviManager;
 import com.pactera.pacteramap.util.PMActivityUtil;
+import com.pactera.pacteramap.util.T;
 import com.pactera.pacteramap.view.PMActivity;
-import com.pactera.pacteramap.view.ui.PMIndexActivity;
 import com.pactera.pacteramap.view.ui.PMWelcomeActivity;
 
 /**
@@ -22,6 +26,7 @@ public class MainActivity extends PMActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.main_activity);
+		initNavi();
 		handler = new Handler();
 		thread = new Thread(new childThread());
 		thread.start();
@@ -30,7 +35,7 @@ public class MainActivity extends PMActivity {
 	/**
 	 * 子线程
 	 * 
-	 * @author WMF
+	 * @author ChunfaLee
 	 */
 	class childThread implements Runnable {
 
@@ -46,6 +51,46 @@ public class MainActivity extends PMActivity {
 		}
 	}
 
+	/** 初始化百度导航 */
+	private void initNavi() {
+		BaiduNaviManager.getInstance().initEngine(MainActivity.this,
+				getSdcardDir(), mNaviEngineInitListener,
+				new LBSAuthManagerListener() {
+					@Override
+					public void onAuthResult(int status, String msg) {
+						String str = null;
+						if (0 == status) {
+							str = "导航key校验成功!";
+						} else {
+							str = "导航key校验失败, " + msg;
+						}
+						T.showShort(MainActivity.this, str);
+					}
+				});
+
+	}
+
+	private NaviEngineInitListener mNaviEngineInitListener = new NaviEngineInitListener() {
+		public void engineInitSuccess() {
+			mIsEngineInitSuccess = true;
+		}
+
+		public void engineInitStart() {
+		}
+
+		public void engineInitFail() {
+		}
+	};
+
+	// 获取sd卡路径
+	private String getSdcardDir() {
+		if (Environment.getExternalStorageState().equalsIgnoreCase(
+				Environment.MEDIA_MOUNTED)) {
+			return Environment.getExternalStorageDirectory().toString();
+		}
+		return null;
+	}
+
 	/**
 	 * 主线程
 	 */
@@ -59,7 +104,7 @@ public class MainActivity extends PMActivity {
 				PMActivityUtil.next(MainActivity.this, PMWelcomeActivity.class);
 				MainActivity.this.finish();
 			} else {
-				PMActivityUtil.next(MainActivity.this, PMIndexActivity.class);
+				PMActivityUtil.next(MainActivity.this, PMWelcomeActivity.class);
 				MainActivity.this.finish();
 			}
 		}

@@ -3,7 +3,7 @@ package com.pactera.pacteramap.business;
 /**
  * Command回调接口
  * 
- * @author wmf
+ * @author ChunfaLee
  *
  */
 public interface PMInterface {

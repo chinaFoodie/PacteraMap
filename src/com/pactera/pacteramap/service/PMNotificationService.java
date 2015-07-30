@@ -21,7 +21,7 @@ import com.pactera.pacteramap.util.PMDateUtil;
 
 /**
  * 接收服务端通知消息服务
- * @author WMF
+ * @author ChunfaLee
  *
  */
 public class PMNotificationService extends PMService {

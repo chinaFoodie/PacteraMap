@@ -12,7 +12,7 @@ import android.database.SQLException;
  * cp /data/data/com.pactera.pacteramap/databases/PacteraMapDatabase.db /storage/sdcard1
  * adb pull /storage/sdcard1/PacteraMapDatabase.db c:\
  * 
- * @author WMF
+ * @author ChunfaLee
  * 
  */
 public class PMDatabaseCommand extends PMCommand {

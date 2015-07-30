@@ -23,7 +23,7 @@ import android.util.Log;
 /**
  * XMPP监听
  * 
- * @author WMF
+ * @author ChunfaLee
  * 
  */
 public class PMListener{

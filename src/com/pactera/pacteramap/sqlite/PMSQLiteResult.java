@@ -3,7 +3,7 @@ package com.pactera.pacteramap.sqlite;
 import java.util.List;
 
 /**
- * @author WMF
+ * @author ChunfaLee
  *
  */
 public class PMSQLiteResult {

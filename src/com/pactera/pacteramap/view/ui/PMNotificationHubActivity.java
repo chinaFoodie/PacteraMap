@@ -21,7 +21,7 @@ import com.pactera.pacteramap.view.PMActivity;
 /**
  * 通知消息中心
  * 
- * @author WMF
+ * @author ChunfaLee
  * 
  */
 public class PMNotificationHubActivity extends PMActivity {

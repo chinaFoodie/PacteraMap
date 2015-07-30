@@ -5,7 +5,7 @@ import android.util.Log;
 
 /** 
  * 多线程基类
- * @author  WMF
+ * @author  ChunfaLee
  */
 public class PMThreadCommand extends PMCommand {
 
@@ -48,7 +48,7 @@ public class PMThreadCommand extends PMCommand {
 	
 	/** 
 	 * 子线程
-	 * @author  WMF 
+	 * @author  ChunfaLee 
 	 */
 	class childThread implements Runnable{
 

@@ -29,7 +29,7 @@ import android.view.View.MeasureSpec;
 /**
  * 工具类
  * 
- * @author WMF
+ * @author ChunfaLee
  * 
  */
 public class PMUtil {

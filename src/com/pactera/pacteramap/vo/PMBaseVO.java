@@ -3,7 +3,7 @@ package com.pactera.pacteramap.vo;
 
 /**
  * 响应数据返回格式
- * @author WMF
+ * @author ChunfaLee
  *
  */
 public class PMBaseVO {

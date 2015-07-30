@@ -10,7 +10,7 @@ import com.google.gson.reflect.TypeToken;
 
 /**
  * JSON解析公共类
- * @author WMF
+ * @author ChunfaLee
  *
  */
 public class PMGsonUtil {

@@ -3,7 +3,7 @@ package com.pactera.pacteramap.config;
 /**
  * 全局配置
  * 
- * @author WMF
+ * @author ChunfaLee
  *
  */
 public class AppConfig {

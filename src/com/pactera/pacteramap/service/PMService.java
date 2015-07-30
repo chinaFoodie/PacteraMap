@@ -9,7 +9,7 @@ import com.pactera.pacteramap.business.PMInterface;
 
 /**
  * service基类
- * @author WMF
+ * @author ChunfaLee
  *
  */
 public class PMService extends Service implements PMInterface {

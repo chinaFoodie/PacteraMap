@@ -15,7 +15,7 @@ import com.pactera.pacteramap.model.PMDataProxy;
 /**
  * 全局类
  * 
- * @author wmf
+ * @author ChunfaLee
  * 
  */
 public class PMApplication extends Application {

@@ -1,7 +1,7 @@
 package com.pactera.pacteramap.notification;
 
 /**
- * @author WMF
+ * @author ChunfaLee
  *
  */
 public class PMNotificationMessageInfo {

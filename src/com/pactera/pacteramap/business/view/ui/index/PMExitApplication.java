@@ -8,13 +8,12 @@ import com.pactera.pacteramap.business.PMInterface;
 import com.pactera.pacteramap.model.PMDataProxy;
 import com.pactera.pacteramap.util.PMDateUtil;
 import com.pactera.pacteramap.util.T;
-import com.pactera.pacteramap.view.ui.PMIndexActivity;
+import com.pactera.pacteramap.view.ui.PMWelcomeActivity;
 
 /**
-*
-* @author Mingfan.Wang
-* 2015-7-14
-*/
+ *
+ * @author Mingfan.Wang 2015-7-14
+ */
 public class PMExitApplication extends PMCommand {
 
 	public PMExitApplication() {
@@ -23,7 +22,7 @@ public class PMExitApplication extends PMCommand {
 
 	@Override
 	public void execute(PMInterface iface) {
-		PMIndexActivity index=(PMIndexActivity)iface;
+		PMWelcomeActivity index = (PMWelcomeActivity) iface;
 		PMDataProxy data = PMApplication.getInstance().data;
 		if (data.exitCount == 1) {
 			long current = PMDateUtil.getMillisecond();
@@ -43,7 +42,6 @@ public class PMExitApplication extends PMCommand {
 
 	@Override
 	public void execute(PMInterface iface, Object value) {
-
 
 	}
 

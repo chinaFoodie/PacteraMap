@@ -10,7 +10,7 @@ import android.content.Intent;
 import com.pactera.pacteramap.R;
 
 /**
- * @author WMF
+ * @author ChunfaLee
  *
  */
 public class PMNotificationMessage {

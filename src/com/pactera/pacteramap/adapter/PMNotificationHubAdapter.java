@@ -20,7 +20,7 @@ import com.pactera.pacteramap.business.PMAdapterCallback;
 
 /**
  * 消息中心
- * @author WMF
+ * @author ChunfaLee
  *
  */
 public class PMNotificationHubAdapter extends

@@ -13,7 +13,7 @@ import java.io.OutputStream;
 /**
  * Base64编码
  * 该工具类中用到了BASE64，需要借助第三方类库：javabase64-1.3.1.jar
- * @author WMF
+ * @author ChunfaLee
  *
  */
 public class PMBase64Util {

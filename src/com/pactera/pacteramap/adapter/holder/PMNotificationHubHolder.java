@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 
 /**
- * @author WMF
+ * @author ChunfaLee
  *
  */
 public class PMNotificationHubHolder {

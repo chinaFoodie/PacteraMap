@@ -14,7 +14,7 @@ import com.pactera.pacteramap.config.AppConfig;
 
 /**
  * http://172.19.64.52:9090/login.jsp?url=%2Findex.jsp
- * @author WMF
+ * @author ChunfaLee
  *
  */
 public class PMTool {

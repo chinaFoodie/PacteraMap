@@ -4,7 +4,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
- * @author WMF
+ * @author ChunfaLee
  * 
  */
 public abstract class PMSQLiteBase extends PMSQLiteResult {

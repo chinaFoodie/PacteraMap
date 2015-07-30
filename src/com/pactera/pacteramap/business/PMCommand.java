@@ -5,7 +5,7 @@ import com.pactera.pacteramap.PMApplication;
 
 /**
  * 公共Command
- * @author WMF
+ * @author ChunfaLee
  *
  */
 public abstract class PMCommand {

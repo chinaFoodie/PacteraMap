@@ -11,7 +11,7 @@ import javax.crypto.spec.SecretKeySpec;
 /**
  * AES加密，密钥长度为128位、192位、256位 
  * 注意：密钥生成长度大于128位需要替换jre\lib\security下面的local_policy.jar和US_export_policy.jar文件
- * @author WMF
+ * @author ChunfaLee
  *
  */
 public class PMAESEncryptUtil {
