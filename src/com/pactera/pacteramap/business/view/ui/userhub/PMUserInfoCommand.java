@@ -10,6 +10,7 @@ import com.loopj.android.http.RequestParams;
 import com.pactera.pacteramap.business.PMCommand;
 import com.pactera.pacteramap.business.PMInterface;
 
+@SuppressWarnings("deprecation")
 public class PMUserInfoCommand extends PMCommand {
 
 	public PMUserInfoCommand() {

@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.pactera.pacteramap.R;
 import com.pactera.pacteramap.adapter.PMNotificationHubAdapter;
-import com.pactera.pacteramap.business.view.ui.index.PMExitApplication;
 import com.pactera.pacteramap.business.view.ui.notification.PMQueryNotificationMessageCommand;
 import com.pactera.pacteramap.util.PMActivityUtil;
 import com.pactera.pacteramap.view.PMActivity;

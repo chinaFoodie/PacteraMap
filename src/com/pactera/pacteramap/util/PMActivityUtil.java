@@ -20,7 +20,7 @@ public class PMActivityUtil {
      * @param curActivity
      * @param nextActivity
      */
-    public static void next(Activity curActivity, Class nextActivity) {
+    public static void next(Activity curActivity, Class<?> nextActivity) {
         next(curActivity, nextActivity, null, -1, -1, R.anim.in_from_right, R.anim.out_to_left);
     }
 
@@ -32,7 +32,7 @@ public class PMActivityUtil {
      * @param extras
      * @param reqCode
      */
-    public static void next(Activity curActivity, Class nextActivity, Bundle extras, int reqCode) {
+    public static void next(Activity curActivity, Class<?> nextActivity, Bundle extras, int reqCode) {
         next(curActivity, nextActivity, extras, reqCode, -1, R.anim.in_from_right, R.anim.out_to_left);
     }
 
@@ -44,7 +44,7 @@ public class PMActivityUtil {
      * @param inAnimId
      * @param outAnimId
      */
-    public static void next(Activity curActivity, Class nextActivity, int inAnimId, int outAnimId) {
+    public static void next(Activity curActivity, Class<?> nextActivity, int inAnimId, int outAnimId) {
         next(curActivity, nextActivity, null, -1, -1, inAnimId, outAnimId);
     }
 
@@ -57,7 +57,7 @@ public class PMActivityUtil {
      * @param inAnimId
      * @param outAnimId
      */
-    public static void next(Activity curActivity, Class nextActivity, int flag, int inAnimId, int outAnimId) {
+    public static void next(Activity curActivity, Class<?> nextActivity, int flag, int inAnimId, int outAnimId) {
         next(curActivity, nextActivity, null, -1, flag, inAnimId, outAnimId);
     }
 
@@ -71,7 +71,7 @@ public class PMActivityUtil {
      * @param inAnimId
      * @param outAnimId
      */
-    public static void next(Activity curActivity, Class nextActivity, Bundle extras, int reqCode, int inAnimId, int outAnimId) {
+    public static void next(Activity curActivity, Class<?> nextActivity, Bundle extras, int reqCode, int inAnimId, int outAnimId) {
         next(curActivity, nextActivity, extras, reqCode, -1, inAnimId, outAnimId);
     }
 
@@ -85,7 +85,7 @@ public class PMActivityUtil {
      * @param inAnimId
      * @param outAnimId
      */
-    public static void next(Activity curActivity, Class nextActivity, Bundle extras, int reqCode, int flag, int inAnimId, int outAnimId) {
+    public static void next(Activity curActivity, Class<?> nextActivity, Bundle extras, int reqCode, int flag, int inAnimId, int outAnimId) {
     	Intent intent = new Intent(curActivity, nextActivity);
         if (null != extras) {
             intent.putExtras(extras);
@@ -161,7 +161,7 @@ public class PMActivityUtil {
      * @param curActivity
      * @param backActivity
      */
-    public static void backActivityWithClearTop(Activity curActivity, Class backActivity) {
+    public static void backActivityWithClearTop(Activity curActivity, Class<?> backActivity) {
         backActivityWithClearTop(curActivity, backActivity, null, R.anim.in_from_left, R.anim.out_to_right);
     }
 
@@ -172,7 +172,7 @@ public class PMActivityUtil {
      * @param backActivity
      * @param extras
      */
-    public static void backActivityWithClearTop(Activity curActivity, Class backActivity, Bundle extras) {
+    public static void backActivityWithClearTop(Activity curActivity, Class<?> backActivity, Bundle extras) {
         backActivityWithClearTop(curActivity, backActivity, extras, R.anim.in_from_left, R.anim.out_to_right);
     }
 
@@ -184,7 +184,7 @@ public class PMActivityUtil {
      * @param inAnimId
      * @param outAnimId
      */
-    public static void backActivityWithClearTop(Activity curActivity, Class backActivity, Bundle extras, int inAnimId, int outAnimId) {
+    public static void backActivityWithClearTop(Activity curActivity, Class<?> backActivity, Bundle extras, int inAnimId, int outAnimId) {
     	Intent intent = new Intent(curActivity, backActivity);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         if (null != extras) {

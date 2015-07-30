@@ -28,6 +28,7 @@ public class PMGsonUtil {
 	 * @param cls
 	 * @return
 	 */
+	@SuppressWarnings("hiding")
 	public static <T> T getPerson(String string, Class<T> cls) {
 		T t = null;
 		try {
@@ -48,6 +49,7 @@ public class PMGsonUtil {
 	 * @param cls
 	 * @return
 	 */
+	@SuppressWarnings("hiding")
 	public static <T> List<T> getPersons(String string, Class<T> cls) {
 		List<T> list = new ArrayList<T>();
 		try {

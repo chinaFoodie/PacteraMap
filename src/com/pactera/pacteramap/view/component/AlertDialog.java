@@ -66,12 +66,11 @@ public class AlertDialog {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	public AlertDialog builder() {
-		// ��ȡDialog����
 		View view = LayoutInflater.from(context).inflate(
 				R.layout.view_alertdialog, null);
 
-		// ��ȡ�Զ���Dialog�����еĿؼ�
 		lLayout_bg = (LinearLayout) view.findViewById(R.id.lLayout_bg);
 		txt_title = (TextView) view.findViewById(R.id.txt_title);
 		txt_title.setVisibility(View.GONE);
@@ -84,11 +83,9 @@ public class AlertDialog {
 		img_line = (ImageView) view.findViewById(R.id.img_line);
 		img_line.setVisibility(View.GONE);
 
-		// ����Dialog���ֺͲ���
 		dialog = new Dialog(context, R.style.AlertDialogStyle);
 		dialog.setContentView(view);
 
-		// ����dialog������С
 		lLayout_bg.setLayoutParams(new FrameLayout.LayoutParams((int) (display
 				.getWidth() * 0.85), LayoutParams.WRAP_CONTENT));
 

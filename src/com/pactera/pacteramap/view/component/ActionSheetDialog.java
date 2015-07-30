@@ -38,6 +38,7 @@ public class ActionSheetDialog {
 		display = windowManager.getDefaultDisplay();
 	}
 
+	@SuppressWarnings("deprecation")
 	public ActionSheetDialog builder() {
 		View view = LayoutInflater.from(context).inflate(
 				R.layout.view_actionsheet, null);
@@ -104,6 +105,7 @@ public class ActionSheetDialog {
 	}
 
 	/** ������Ŀ���� */
+	@SuppressWarnings("deprecation")
 	private void setSheetItems() {
 		if (sheetItemList == null || sheetItemList.size() <= 0) {
 			return;
@@ -111,8 +113,6 @@ public class ActionSheetDialog {
 
 		int size = sheetItemList.size();
 
-		// TODO �߶ȿ��ƣ�����ѽ���취
-		// �����Ŀ�����ʱ����Ƹ߶�
 		if (size >= 7) {
 			LinearLayout.LayoutParams params = (LayoutParams) sLayout_content
 					.getLayoutParams();
@@ -120,7 +120,6 @@ public class ActionSheetDialog {
 			sLayout_content.setLayoutParams(params);
 		}
 
-		// ѭ�������Ŀ
 		for (int i = 1; i <= size; i++) {
 			final int index = i;
 			SheetItem sheetItem = sheetItemList.get(i - 1);

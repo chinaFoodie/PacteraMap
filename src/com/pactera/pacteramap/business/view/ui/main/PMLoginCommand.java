@@ -17,6 +17,7 @@ import com.pactera.pacteramap.vo.PMUserSublistVO;
  * @author ChunfaLee
  *
  */
+@SuppressWarnings("deprecation")
 public class PMLoginCommand extends PMCommand {
 
 	public PMLoginCommand() {

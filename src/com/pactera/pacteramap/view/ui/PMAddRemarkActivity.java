@@ -1,7 +1,5 @@
 package com.pactera.pacteramap.view.ui;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.lang.ref.WeakReference;
 
 import android.annotation.SuppressLint;
@@ -16,7 +14,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
@@ -78,6 +75,7 @@ public class PMAddRemarkActivity extends PMActivity implements OnClickListener,
 	private Button btnFinish;
 	private UIHandler uiHandler = new UIHandler();
 	private UIThread uiThread;
+	@SuppressWarnings("unused")
 	private ImageLoader imageLoader;
 	private Drawable drawable = null;
 	private static final int TAKE_PHOTO = 0x000000;
@@ -490,6 +488,7 @@ public class PMAddRemarkActivity extends PMActivity implements OnClickListener,
 
 	@Override
 	public void locationCallBack(Object value) {
+		@SuppressWarnings("unused")
 		BDLocation bdLocation = (BDLocation) value;
 	}
 }

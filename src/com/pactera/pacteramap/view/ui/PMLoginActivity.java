@@ -18,7 +18,9 @@ import com.pactera.pacteramap.view.PMActivity;
  */
 public class PMLoginActivity extends PMActivity {
 
+	@SuppressWarnings("unused")
 	private EditText user_name;
+	@SuppressWarnings("unused")
 	private EditText password;
 	private Button login;
 

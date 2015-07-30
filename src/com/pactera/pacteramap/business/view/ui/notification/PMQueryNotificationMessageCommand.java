@@ -2,12 +2,9 @@ package com.pactera.pacteramap.business.view.ui.notification;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import com.pactera.pacteramap.business.PMInterface;
 import com.pactera.pacteramap.business.PMThreadCommand;
-import com.pactera.pacteramap.sqlite.PMSQLiteResult;
-import com.pactera.pacteramap.sqlite.vo.PMNotificationMessageVO;
 
 /**
 *
