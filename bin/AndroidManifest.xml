@@ -141,6 +141,13 @@
             android:exported="false"
             android:screenOrientation="portrait" >
         </activity>
+        <!-- 消息中心 -->
+        <activity
+            android:name="com.pactera.pacteramap.view.ui.PMMessageCenterActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait" >
+        </activity>
         <!-- 备忘录 -->
         <activity
             android:name="com.pactera.pacteramap.view.ui.PMRemarkActivity"

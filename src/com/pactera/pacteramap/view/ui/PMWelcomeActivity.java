@@ -199,7 +199,7 @@ public class PMWelcomeActivity extends PMActivity implements OnClickListener,
 			break;
 		// 消息中心
 		case R.id.ll_main_message_center:
-			PMActivityUtil.next(this, PMNotificationHubActivity.class);
+			PMActivityUtil.next(this, PMMessageCenterActivity.class);
 			break;
 		// 理财产品
 		case R.id.ll_main_financial_products:

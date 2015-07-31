@@ -51,7 +51,7 @@ public class PMNotificationDetailActivity extends PMActivity {
 		LinearLayout rlBack = (LinearLayout) findViewById(R.id.ll_img_base_right);
 		rlBack.setVisibility(View.VISIBLE);
 		ImageView delete = (ImageView) rlBack.findViewById(R.id.img_base_right);
-		delete.setImageResource(R.drawable.iconfontshanchu);
+//		delete.setImageResource(R.drawable.iconfontshanchu);
 		delete.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {

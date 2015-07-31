@@ -304,4 +304,5 @@ public class PMUtil {
 				BitmapFactory.decodeFile(path, opts));
 		return Bitmap.createScaledBitmap(weak.get(), w, h, true);
 	}
+
 }

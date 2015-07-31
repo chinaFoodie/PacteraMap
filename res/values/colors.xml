@@ -14,6 +14,7 @@
     <color name="loan_business">#3f51b5</color>
     <color name="route_plan">#00bcd4</color>
     <color name="remark">#607d8b</color>
+    <color name="no_message_bg">#f8f9fa</color>
     <!-- iso dialog -->
     <color name="trans">#00000000</color>
     <color name="black">#000000</color>

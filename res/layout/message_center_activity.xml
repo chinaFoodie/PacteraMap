@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 消息中心界面 author chunfalee -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/base_title_layout" />
+
+    <RelativeLayout
+        android:id="@+id/rl_no_message_center"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/no_message_bg" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/pactera_no_message" />
+    </RelativeLayout>
+
+    <com.pactera.pacteramap.view.component.PullToRefreshSwipeMenuListView
+        android:id="@+id/ptrlv_message_center"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone" >
+    </com.pactera.pacteramap.view.component.PullToRefreshSwipeMenuListView>
+
+</LinearLayout>
