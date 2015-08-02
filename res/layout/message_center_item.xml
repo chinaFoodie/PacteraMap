@@ -4,21 +4,37 @@
     android:layout_height="wrap_content"
     android:padding="8dp" >
 
-    <ImageView
+    <com.pactera.pacteramap.view.component.CircleImageView
         android:id="@+id/iv_icon"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/silding_menu_bg" />
 
-    <TextView
-        android:id="@+id/tv_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/iv_icon"
-        android:text="name"
-        android:textColor="@android:color/black"
-        android:textSize="18sp" />
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="Title"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="Content"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+    </LinearLayout>
 
 </RelativeLayout>

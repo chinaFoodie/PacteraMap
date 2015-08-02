@@ -3,10 +3,14 @@ package com.pactera.pacteramap.view.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +23,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ZoomControls;
 
+import com.baidu.location.BDLocation;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BaiduMap.OnMapClickListener;
 import com.baidu.mapapi.map.BaiduMap.OnMarkerClickListener;
@@ -46,6 +51,9 @@ import com.pactera.pacteramap.business.database.dao.WorkTrackDao;
 import com.pactera.pacteramap.business.database.dao.WorkTrackDao.Properties;
 import com.pactera.pacteramap.business.view.ui.worktrack.PMWorkTrackCommand;
 import com.pactera.pacteramap.config.PMShareKey;
+import com.pactera.pacteramap.mapinterface.PMLocationCommand;
+import com.pactera.pacteramap.mapinterface.PMLocationInterface;
+import com.pactera.pacteramap.service.PMLocationService;
 import com.pactera.pacteramap.util.L;
 import com.pactera.pacteramap.util.PMActivityUtil;
 import com.pactera.pacteramap.util.PMGsonUtil;
@@ -67,7 +75,7 @@ import com.pactera.pacteramap.vo.PMWorkTrack.AddressInfo;
  */
 public class PMWorkTrackActivity extends PMActivity implements OnClickListener,
 		OnMapClickListener, OnCalendarClickListener, OnItemClickListener,
-		OnMarkerClickListener {
+		OnMarkerClickListener, PMLocationInterface {
 	private TextView tvTitle, tvMoreRight;
 	private LinearLayout llBack, llMore;
 	private ImageView img2Remark;
@@ -88,6 +96,10 @@ public class PMWorkTrackActivity extends PMActivity implements OnClickListener,
 	private DaoMaster daoMaster;
 	private List<WorkTrack> listWorkTrack;
 	private Boolean isStartRun = false;
+	private ServiceConnection sConnection;
+	private PMLocationService myService;
+	private BDLocation bdLocation;
+	private LatLng locLatLng;
 
 	Handler handler = new Handler() {
 
@@ -119,6 +131,7 @@ public class PMWorkTrackActivity extends PMActivity implements OnClickListener,
 		daoSession = daoMaster.newSession();
 		workTrackDao = daoSession.getWorkTrackDao();
 		init();
+		// startLocationService();
 	}
 
 	/** 初始化视图 **/
@@ -126,7 +139,7 @@ public class PMWorkTrackActivity extends PMActivity implements OnClickListener,
 		tvTitle = (TextView) findViewById(R.id.tv_mid_title);
 		tvTitle.setText("工作轨迹");
 		tvMoreRight = (TextView) findViewById(R.id.tv_base_right);
-		tvMoreRight.setText("播放");
+		tvMoreRight.setText("开始");
 		pMCalendar = (PMCalendar) findViewById(R.id.work_track_kcalendar);
 		lvTrackPoint = (ListView) findViewById(R.id.lv_location_point);
 		lvTrackPoint.setOnItemClickListener(this);
@@ -192,8 +205,46 @@ public class PMWorkTrackActivity extends PMActivity implements OnClickListener,
 		newThread.start();
 	}
 
+	private void startLocationService() {
+		sConnection = new ServiceConnection() {
+			/*
+			 * 只有在MyService中的onBind方法中返回一个IBinder实例才会在Bind的时候
+			 * 调用onServiceConnection回调方法
+			 * 第二个参数service就是MyService中onBind方法return的那个IBinder实例，可以利用这个来传递数据
+			 */
+			@Override
+			public void onServiceConnected(ComponentName name, IBinder service) {
+				myService = ((PMLocationService.LocalBinder) service)
+						.getService();
+			}
+
+			@Override
+			public void onServiceDisconnected(ComponentName name) {
+				/*
+				 * SDK上是这么说的： This is called when the connection with the
+				 * service has been unexpectedly disconnected that is, its
+				 * process crashed. Because it is running in our same process,
+				 * we should never see this happen.
+				 * 所以说，只有在service因异常而断开连接的时候，这个方法才会用到
+				 */
+				sConnection = null;
+				L.e("onServiceDisconnected : ServiceConnection --->"
+						+ sConnection);
+			}
+		};
+		Intent intent = new Intent(PMWorkTrackActivity.this,
+				PMLocationService.class);
+		startService(intent);
+	}
+
 	@Override
 	protected void onDestroy() {
+		// Intent intent = new Intent();
+		// intent.setAction("com.pactera.pacteramap.service.LOCATION");
+		// stopService(intent);
+		if (PMLocationCommand.mLocationClient != null) {
+			PMLocationCommand.mLocationClient.stop();
+		}
 		super.onDestroy();
 	}
 
@@ -214,9 +265,7 @@ public class PMWorkTrackActivity extends PMActivity implements OnClickListener,
 			break;
 		// 保存运动轨迹到本地数据库
 		case R.id.ll_tv_base_right:
-			mBaiduMap.clear();
-			isStartRun = true;
-			worckTrackBack();
+			new PMLocationCommand(this).execute(this);
 			break;
 		default:
 			break;
@@ -225,22 +274,6 @@ public class PMWorkTrackActivity extends PMActivity implements OnClickListener,
 
 	@Override
 	public void onMapClick(LatLng latLng) {
-		BitmapDescriptor bitmap = BitmapDescriptorFactory
-				.fromResource(R.drawable.icon_gcoding);
-		OverlayOptions oofirst = new MarkerOptions().position(latLng)
-				.icon(bitmap).zIndex(9).draggable(false);
-		mBaiduMap.addOverlay(oofirst);
-		WorkTrack workTrack = new WorkTrack();
-		workTrack.setDate(date);
-		workTrack.setDesc("这是我的工作轨迹点");
-		workTrack.setIsMark("1");
-		workTrack.setLatitude(latLng.latitude + "");
-		workTrack.setLongitude(latLng.longitude + "");
-		workTrack.setMarkIndex("1");
-		workTrack.setUserImei(PMApplication.getInstance().getImei());
-		workTrack.setUserName(share.getString(PMShareKey.USERNAME));
-		long workTrackId = workTrackDao.insert(workTrack);
-		L.e("插入数据成功返回的ID" + workTrackId + "/n" + workTrack.getDate());
 	}
 
 	/** 获取地图上的工作轨迹点 */
@@ -299,6 +332,9 @@ public class PMWorkTrackActivity extends PMActivity implements OnClickListener,
 					R.drawable.calendar_date_focused);
 			date = dateFormat;// 最后返回给全局 date
 			worckTrackBack();
+			if (PMLocationCommand.mLocationClient != null) {
+				PMLocationCommand.mLocationClient.stop();
+			}
 		}
 	}
 
@@ -313,6 +349,9 @@ public class PMWorkTrackActivity extends PMActivity implements OnClickListener,
 						.findViewById(R.id.tv_baidu_marker_index);
 				if (i == 0) {
 					tvIndex.setText("起");
+					LatLng l = new LatLng(list.get(i).latitude,
+							list.get(i).longitude);
+					mBaiduMap.setMapStatus(MapStatusUpdateFactory.newLatLng(l));
 				} else if (i == list.size() - 1) {
 					tvIndex.setText("终");
 				} else {
@@ -352,4 +391,26 @@ public class PMWorkTrackActivity extends PMActivity implements OnClickListener,
 		return false;
 	}
 
+	@Override
+	public void locationCallBack(Object value) {
+		bdLocation = (BDLocation) value;
+		locLatLng = new LatLng(bdLocation.getLatitude(),
+				bdLocation.getLongitude());
+		BitmapDescriptor bitmap = BitmapDescriptorFactory
+				.fromResource(R.drawable.icon_gcoding);
+		OverlayOptions oofirst = new MarkerOptions().position(locLatLng)
+				.icon(bitmap).zIndex(9).draggable(false);
+		mBaiduMap.addOverlay(oofirst);
+		WorkTrack workTrack = new WorkTrack();
+		workTrack.setDate(date);
+		workTrack.setDesc("这是我的工作轨迹点");
+		workTrack.setIsMark("1");
+		workTrack.setLatitude(locLatLng.latitude + "");
+		workTrack.setLongitude(locLatLng.longitude + "");
+		workTrack.setMarkIndex("1");
+		workTrack.setUserImei(PMApplication.getInstance().getImei());
+		workTrack.setUserName(share.getString(PMShareKey.USERNAME));
+		long workTrackId = workTrackDao.insert(workTrack);
+		L.e("插入数据成功返回的ID" + workTrackId + "\n" + workTrack.getDate());
+	}
 }

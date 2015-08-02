@@ -1,12 +1,18 @@
 package com.pactera.pacteramap;
 
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.IBinder;
 
 import com.baidu.lbsapi.auth.LBSAuthManagerListener;
 import com.baidu.navisdk.BNaviEngineManager.NaviEngineInitListener;
 import com.baidu.navisdk.BaiduNaviManager;
+import com.pactera.pacteramap.service.PMLocationService;
+import com.pactera.pacteramap.util.L;
 import com.pactera.pacteramap.util.PMActivityUtil;
 import com.pactera.pacteramap.util.T;
 import com.pactera.pacteramap.view.PMActivity;
@@ -44,7 +50,6 @@ public class MainActivity extends PMActivity {
 			try {
 				Thread.sleep(1500);
 			} catch (InterruptedException e) {
-
 				e.printStackTrace();
 			}
 			handler.post(mainThread);
@@ -67,7 +72,6 @@ public class MainActivity extends PMActivity {
 						T.showShort(MainActivity.this, str);
 					}
 				});
-
 	}
 
 	private NaviEngineInitListener mNaviEngineInitListener = new NaviEngineInitListener() {

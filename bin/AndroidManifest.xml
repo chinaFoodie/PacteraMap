@@ -209,6 +209,11 @@
             android:enabled="true" />
         <!-- 通知消息服务 -->
         <service android:name="com.pactera.pacteramap.service.PMNotificationService" />
+        <service android:name="com.pactera.pacteramap.service.PMLocationService" >
+            <intent-filter>
+                <action android:name="com.pactera.pacteramap.service.LOCATION"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

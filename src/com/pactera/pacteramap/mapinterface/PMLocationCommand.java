@@ -39,7 +39,7 @@ public class PMLocationCommand extends PMLocation {
 			/** 可以在这里定义个接口回调定位信息回去 */
 			if (!"".equals(location.getAddrStr())) {
 				interFace.locationCallBack(locationResult);
-				mLocationClient.stop();
+//				mLocationClient.stop();
 			}
 		}
 	}

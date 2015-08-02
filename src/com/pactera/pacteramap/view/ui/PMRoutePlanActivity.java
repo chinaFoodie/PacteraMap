@@ -430,7 +430,7 @@ public class PMRoutePlanActivity extends PMActivity implements OnClickListener,
 		BDLocation bdLocation = (BDLocation) value;
 		Message msg = new Message();
 		msg.what = 90501;
-		msg.obj = bdLocation.getAddrStr();
+		msg.obj = bdLocation.getStreet();
 		handler.sendMessage(msg);
 		mBaidumap.setMapStatus(MapStatusUpdateFactory.newLatLng(new LatLng(
 				Double.valueOf(bdLocation.getLatitude()), Double

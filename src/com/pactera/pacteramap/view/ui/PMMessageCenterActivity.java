@@ -4,11 +4,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.TypedValue;
@@ -126,7 +124,7 @@ public class PMMessageCenterActivity extends PMActivity implements
 					break;
 				case 1:
 					// delete
-					// delete(item);
+					delete(item);
 					mAppList.remove(position);
 					mAdapter.notifyDataSetChanged();
 					break;
@@ -193,13 +191,6 @@ public class PMMessageCenterActivity extends PMActivity implements
 
 	private void delete(ApplicationInfo item) {
 		// delete app
-		try {
-			Intent intent = new Intent(Intent.ACTION_DELETE);
-			intent.setData(Uri.fromParts("package", item.packageName, null));
-			startActivity(intent);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	private void open(ApplicationInfo item) {
@@ -232,17 +223,14 @@ public class PMMessageCenterActivity extends PMActivity implements
 			}
 			ViewHolder holder = (ViewHolder) convertView.getTag();
 			ApplicationInfo item = getItem(position);
-			holder.iv_icon.setImageDrawable(item.loadIcon(getPackageManager()));
 			holder.tv_name.setText(item.loadLabel(getPackageManager()));
 			return convertView;
 		}
 
 		class ViewHolder {
-			ImageView iv_icon;
 			TextView tv_name;
 
 			public ViewHolder(View view) {
-				iv_icon = (ImageView) view.findViewById(R.id.iv_icon);
 				tv_name = (TextView) view.findViewById(R.id.tv_name);
 				view.setTag(this);
 			}
