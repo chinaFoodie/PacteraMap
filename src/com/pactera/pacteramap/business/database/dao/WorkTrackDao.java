@@ -29,9 +29,10 @@ public class WorkTrackDao extends AbstractDao<WorkTrack, Long> {
         public final static Property UserImei = new Property(3, String.class, "userImei", false, "USER_IMEI");
         public final static Property Longitude = new Property(4, String.class, "longitude", false, "LONGITUDE");
         public final static Property Latitude = new Property(5, String.class, "latitude", false, "LATITUDE");
-        public final static Property IsMark = new Property(6, String.class, "isMark", false, "IS_MARK");
-        public final static Property MarkIndex = new Property(7, String.class, "markIndex", false, "MARK_INDEX");
-        public final static Property Desc = new Property(8, String.class, "desc", false, "DESC");
+        public final static Property LocAddress = new Property(6, String.class, "locAddress", false, "LOC_ADDRESS");
+        public final static Property IsMark = new Property(7, String.class, "isMark", false, "IS_MARK");
+        public final static Property MarkIndex = new Property(8, String.class, "markIndex", false, "MARK_INDEX");
+        public final static Property Desc = new Property(9, String.class, "desc", false, "DESC");
     };
 
 
@@ -53,9 +54,10 @@ public class WorkTrackDao extends AbstractDao<WorkTrack, Long> {
                 "'USER_IMEI' TEXT," + // 3: userImei
                 "'LONGITUDE' TEXT," + // 4: longitude
                 "'LATITUDE' TEXT," + // 5: latitude
-                "'IS_MARK' TEXT," + // 6: isMark
-                "'MARK_INDEX' TEXT," + // 7: markIndex
-                "'DESC' TEXT);"); // 8: desc
+                "'LOC_ADDRESS' TEXT," + // 6: locAddress
+                "'IS_MARK' TEXT," + // 7: isMark
+                "'MARK_INDEX' TEXT," + // 8: markIndex
+                "'DESC' TEXT);"); // 9: desc
     }
 
     /** Drops the underlying database table. */
@@ -99,19 +101,24 @@ public class WorkTrackDao extends AbstractDao<WorkTrack, Long> {
             stmt.bindString(6, latitude);
         }
  
+        String locAddress = entity.getLocAddress();
+        if (locAddress != null) {
+            stmt.bindString(7, locAddress);
+        }
+ 
         String isMark = entity.getIsMark();
         if (isMark != null) {
-            stmt.bindString(7, isMark);
+            stmt.bindString(8, isMark);
         }
  
         String markIndex = entity.getMarkIndex();
         if (markIndex != null) {
-            stmt.bindString(8, markIndex);
+            stmt.bindString(9, markIndex);
         }
  
         String desc = entity.getDesc();
         if (desc != null) {
-            stmt.bindString(9, desc);
+            stmt.bindString(10, desc);
         }
     }
 
@@ -131,9 +138,10 @@ public class WorkTrackDao extends AbstractDao<WorkTrack, Long> {
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // userImei
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // longitude
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // latitude
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // isMark
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // markIndex
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8) // desc
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // locAddress
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // isMark
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // markIndex
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9) // desc
         );
         return entity;
     }
@@ -147,9 +155,10 @@ public class WorkTrackDao extends AbstractDao<WorkTrack, Long> {
         entity.setUserImei(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setLongitude(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setLatitude(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setIsMark(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
-        entity.setMarkIndex(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setDesc(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setLocAddress(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setIsMark(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setMarkIndex(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setDesc(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
      }
     
     /** @inheritdoc */

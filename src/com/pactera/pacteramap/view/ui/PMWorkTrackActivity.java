@@ -39,6 +39,8 @@ import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.map.PolylineOptions;
 import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.utils.CoordinateConverter;
+import com.baidu.mapapi.utils.CoordinateConverter.CoordType;
 import com.loopj.android.http.RequestParams;
 import com.pactera.pacteramap.PMApplication;
 import com.pactera.pacteramap.R;
@@ -64,7 +66,6 @@ import com.pactera.pacteramap.view.PMActivity;
 import com.pactera.pacteramap.view.component.PMCalendar;
 import com.pactera.pacteramap.view.component.PMCalendar.OnCalendarClickListener;
 import com.pactera.pacteramap.vo.PMWorkTrack;
-import com.pactera.pacteramap.vo.PMWorkTrack.AddressInfo;
 
 /**
  * 工作轨迹
@@ -86,7 +87,6 @@ public class PMWorkTrackActivity extends PMActivity implements OnClickListener,
 	private BitmapDescriptor mBitmap;
 	private List<LatLng> list;
 	private ListView lvTrackPoint;
-	private List<AddressInfo> listTrack = new ArrayList<AddressInfo>();
 	private PMTrackPointAdapter tAdapter;
 	private View markerLayout;
 	private PMSharePreferce share;
@@ -301,11 +301,12 @@ public class PMWorkTrackActivity extends PMActivity implements OnClickListener,
 	@Override
 	public void CallBack(Object value) {
 		super.CallBack(value);
+		getWorkTrackLatlng();
 		PMWorkTrack wTrack = PMGsonUtil.getPerson(value.toString(),
 				PMWorkTrack.class);
 		if (wTrack != null) {
-			listTrack = wTrack.data.get(0).addressInfo;
-			tAdapter = new PMTrackPointAdapter(this, listTrack);
+			// listTrack = wTrack.data.get(0).addressInfo;
+			tAdapter = new PMTrackPointAdapter(this, listWorkTrack);
 			lvTrackPoint.setAdapter(tAdapter);
 		} else {
 			T.showShort(this, "返回结果有误");
@@ -380,9 +381,8 @@ public class PMWorkTrackActivity extends PMActivity implements OnClickListener,
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		T.showShort(PMWorkTrackActivity.this,
-				position + "   " + "纬度：" + listTrack.get(position).latitude
-						+ "\n" + "经度：" + listTrack.get(position).longitude);
+		T.showShort(PMWorkTrackActivity.this, position + "   " + "纬度："
+				+ listWorkTrack.get(position).getLocAddress());
 	}
 
 	@Override
@@ -394,19 +394,26 @@ public class PMWorkTrackActivity extends PMActivity implements OnClickListener,
 	@Override
 	public void locationCallBack(Object value) {
 		bdLocation = (BDLocation) value;
+		CoordinateConverter converter = new CoordinateConverter();
+		converter.from(CoordType.COMMON);
+		// sourceLatLng待转换坐标
+
 		locLatLng = new LatLng(bdLocation.getLatitude(),
 				bdLocation.getLongitude());
+		converter.coord(locLatLng);
+		LatLng desLatLng = converter.convert();
 		BitmapDescriptor bitmap = BitmapDescriptorFactory
 				.fromResource(R.drawable.icon_gcoding);
-		OverlayOptions oofirst = new MarkerOptions().position(locLatLng)
+		OverlayOptions oofirst = new MarkerOptions().position(desLatLng)
 				.icon(bitmap).zIndex(9).draggable(false);
 		mBaiduMap.addOverlay(oofirst);
 		WorkTrack workTrack = new WorkTrack();
 		workTrack.setDate(date);
 		workTrack.setDesc("这是我的工作轨迹点");
 		workTrack.setIsMark("1");
-		workTrack.setLatitude(locLatLng.latitude + "");
-		workTrack.setLongitude(locLatLng.longitude + "");
+		workTrack.setLatitude(desLatLng.latitude + "");
+		workTrack.setLongitude(desLatLng.longitude + "");
+		workTrack.setLocAddress(bdLocation.getAddrStr());
 		workTrack.setMarkIndex("1");
 		workTrack.setUserImei(PMApplication.getInstance().getImei());
 		workTrack.setUserName(share.getString(PMShareKey.USERNAME));

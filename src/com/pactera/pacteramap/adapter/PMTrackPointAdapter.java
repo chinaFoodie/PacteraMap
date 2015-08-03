@@ -13,9 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pactera.pacteramap.R;
+import com.pactera.pacteramap.business.database.bean.WorkTrack;
 import com.pactera.pacteramap.util.T;
 import com.pactera.pacteramap.view.ui.PMRemarkActivity;
-import com.pactera.pacteramap.vo.PMWorkTrack.AddressInfo;
 
 /**
  * 工作轨迹点适配器
@@ -26,11 +26,11 @@ import com.pactera.pacteramap.vo.PMWorkTrack.AddressInfo;
  */
 public class PMTrackPointAdapter extends BaseAdapter {
 	private Context context;
-	private List<AddressInfo> list;
+	private List<WorkTrack> list;
 
-	public PMTrackPointAdapter(Context context, List<AddressInfo> list) {
+	public PMTrackPointAdapter(Context context, List<WorkTrack> listWorkTrack) {
 		this.context = context;
-		this.list = list;
+		this.list = listWorkTrack;
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public class PMTrackPointAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 		holder.tvTrackInfo.setText((position + 1) + ":"
-				+ list.get(position).addr_str);
+				+ list.get(position).getLocAddress());
 		if (position % 2 == 1) {
 			holder.imgRemark.setVisibility(View.VISIBLE);
 		} else {

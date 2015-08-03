@@ -12,6 +12,7 @@ public class WorkTrack {
     private String userImei;
     private String longitude;
     private String latitude;
+    private String locAddress;
     private String isMark;
     private String markIndex;
     private String desc;
@@ -23,13 +24,14 @@ public class WorkTrack {
         this.id = id;
     }
 
-    public WorkTrack(Long id, String date, String userName, String userImei, String longitude, String latitude, String isMark, String markIndex, String desc) {
+    public WorkTrack(Long id, String date, String userName, String userImei, String longitude, String latitude, String locAddress, String isMark, String markIndex, String desc) {
         this.id = id;
         this.date = date;
         this.userName = userName;
         this.userImei = userImei;
         this.longitude = longitude;
         this.latitude = latitude;
+        this.locAddress = locAddress;
         this.isMark = isMark;
         this.markIndex = markIndex;
         this.desc = desc;
@@ -81,6 +83,14 @@ public class WorkTrack {
 
     public void setLatitude(String latitude) {
         this.latitude = latitude;
+    }
+
+    public String getLocAddress() {
+        return locAddress;
+    }
+
+    public void setLocAddress(String locAddress) {
+        this.locAddress = locAddress;
     }
 
     public String getIsMark() {

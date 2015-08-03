@@ -295,7 +295,7 @@ public class NoUsePMWorkTrackActivity extends PMActivity implements OnClickListe
 				PMWorkTrack.class);
 		if (wTrack != null) {
 			listTrack = wTrack.data.get(0).addressInfo;
-			tAdapter = new PMTrackPointAdapter(this, listTrack);
+//			tAdapter = new PMTrackPointAdapter(this, listTrack);
 			lvTrackPoint.setAdapter(tAdapter);
 		} else {
 			T.showShort(this, "返回结果有误");
