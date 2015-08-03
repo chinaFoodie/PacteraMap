@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.pactera.pacteramap.R;
+import com.pactera.pacteramap.util.PMUtil;
 import com.pactera.pacteramap.view.PMActivity;
 import com.pactera.pacteramap.view.component.PMCalendar;
 import com.pactera.pacteramap.view.component.PMCalendar.OnCalendarClickListener;
@@ -22,8 +23,8 @@ import com.pactera.pacteramap.view.component.PMCalendar.OnCalendarDateChangedLis
  *
  */
 public class PMSignInActivity extends PMActivity implements OnClickListener {
-	private TextView tvTitle, tvCalMonth;
-	private LinearLayout llBack;
+	private TextView tvTitle, tvCalMonth, tvCurrent, tvSignIn;
+	private LinearLayout llBack, llSignIn;
 	private PMCalendar calendar;
 	private String date = null;
 
@@ -43,6 +44,13 @@ public class PMSignInActivity extends PMActivity implements OnClickListener {
 		llBack = (LinearLayout) findViewById(R.id.ll_tv_base_left);
 		llBack.setVisibility(View.VISIBLE);
 		llBack.setOnClickListener(this);
+		llSignIn = (LinearLayout) findViewById(R.id.ll_tv_base_right);
+		llSignIn.setVisibility(View.VISIBLE);
+		llSignIn.setOnClickListener(this);
+		tvSignIn = (TextView) findViewById(R.id.tv_base_right);
+		tvSignIn.setText("排行榜");
+		tvCurrent = (TextView) findViewById(R.id.tv_sign_in_date);
+		tvCurrent.setText("当前日期：\n" + PMUtil.getCurrentDate());
 		calendar = (PMCalendar) findViewById(R.id.sign_in_calendar);
 		tvCalMonth = (TextView) findViewById(R.id.sign_in_calendar_month);
 		tvCalMonth.setText(calendar.getCalendarYear() + "年"

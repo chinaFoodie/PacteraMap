@@ -14,8 +14,7 @@
             android:id="@+id/sign_in_calendar_last_month"
             android:layout_width="70dp"
             android:layout_height="55dp"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/sign_in_calendar_month" >
+            android:layout_centerVertical="true" >
 
             <TextView
                 android:layout_width="9dp"
@@ -28,9 +27,10 @@
 
         <TextView
             android:id="@+id/sign_in_calendar_month"
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/sign_in_calendar_last_month"
             android:gravity="center"
             android:textColor="#aa564b4b"
             android:textSize="18sp" />
@@ -50,6 +50,17 @@
                 android:layout_marginLeft="20dp"
                 android:background="@drawable/bt_calendar_next" />
         </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_sign_in_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="6dp"
+            android:gravity="center"
+            android:textColor="#aa564b4b"
+            android:textSize="14sp" />
     </RelativeLayout>
 
     <com.pactera.pacteramap.view.component.PMCalendar
