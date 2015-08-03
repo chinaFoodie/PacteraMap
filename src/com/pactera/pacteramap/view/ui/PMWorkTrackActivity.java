@@ -45,17 +45,12 @@ import com.loopj.android.http.RequestParams;
 import com.pactera.pacteramap.PMApplication;
 import com.pactera.pacteramap.R;
 import com.pactera.pacteramap.adapter.PMTrackPointAdapter;
-import com.pactera.pacteramap.business.database.bean.WorkTrack;
-import com.pactera.pacteramap.business.database.dao.DaoMaster;
-import com.pactera.pacteramap.business.database.dao.DaoMaster.DevOpenHelper;
-import com.pactera.pacteramap.business.database.dao.DaoSession;
-import com.pactera.pacteramap.business.database.dao.WorkTrackDao;
-import com.pactera.pacteramap.business.database.dao.WorkTrackDao.Properties;
 import com.pactera.pacteramap.business.view.ui.worktrack.PMWorkTrackCommand;
 import com.pactera.pacteramap.config.PMShareKey;
 import com.pactera.pacteramap.mapinterface.PMLocationCommand;
 import com.pactera.pacteramap.mapinterface.PMLocationInterface;
 import com.pactera.pacteramap.service.PMLocationService;
+import com.pactera.pacteramap.sqlite.litepal.bean.WorkTrackBean;
 import com.pactera.pacteramap.util.L;
 import com.pactera.pacteramap.util.PMActivityUtil;
 import com.pactera.pacteramap.util.PMGsonUtil;
@@ -90,16 +85,14 @@ public class PMWorkTrackActivity extends PMActivity implements OnClickListener,
 	private PMTrackPointAdapter tAdapter;
 	private View markerLayout;
 	private PMSharePreferce share;
-	private DaoSession daoSession;
-	private WorkTrackDao workTrackDao;
 	private SQLiteDatabase db;
-	private DaoMaster daoMaster;
-	private List<WorkTrack> listWorkTrack;
 	private Boolean isStartRun = false;
 	private ServiceConnection sConnection;
 	private PMLocationService myService;
 	private BDLocation bdLocation;
 	private LatLng locLatLng;
+	private List<WorkTrackBean> listWorkTrack;
+	private WorkTrackBean mTrack;
 
 	Handler handler = new Handler() {
 
@@ -110,7 +103,6 @@ public class PMWorkTrackActivity extends PMActivity implements OnClickListener,
 			case 9000:
 				T.showShort(PMWorkTrackActivity.this, "没有轨迹路线");
 				break;
-
 			default:
 				break;
 			}
@@ -123,13 +115,8 @@ public class PMWorkTrackActivity extends PMActivity implements OnClickListener,
 		setContentView(R.layout.work_track_activity);
 		date = PMUtil.getCurrentDate();
 		share = PMSharePreferce.getInstance(this);
+		mTrack = WorkTrackBean.getInstance();
 		// 创建对象
-		DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "jredu.db",
-				null);
-		db = helper.getWritableDatabase();
-		daoMaster = new DaoMaster(db);
-		daoSession = daoMaster.newSession();
-		workTrackDao = daoSession.getWorkTrackDao();
 		init();
 		// startLocationService();
 	}
@@ -277,12 +264,12 @@ public class PMWorkTrackActivity extends PMActivity implements OnClickListener,
 	}
 
 	/** 获取地图上的工作轨迹点 */
+	@SuppressWarnings("static-access")
 	private List<LatLng> getWorkTrackLatlng() {
-		listWorkTrack = workTrackDao.queryBuilder()
-				.where(Properties.Date.eq(date)).orderAsc(Properties.Id).list();
+		listWorkTrack = mTrack.findAll(WorkTrackBean.class);
 		list = new ArrayList<LatLng>();
 		if (listWorkTrack != null && listWorkTrack.size() > 0) {
-			for (WorkTrack workTrack : listWorkTrack) {
+			for (WorkTrackBean workTrack : listWorkTrack) {
 				list.add(new LatLng(Double.valueOf(workTrack.getLatitude()),
 						Double.valueOf(workTrack.getLongitude())));
 			}
@@ -305,7 +292,6 @@ public class PMWorkTrackActivity extends PMActivity implements OnClickListener,
 		PMWorkTrack wTrack = PMGsonUtil.getPerson(value.toString(),
 				PMWorkTrack.class);
 		if (wTrack != null) {
-			// listTrack = wTrack.data.get(0).addressInfo;
 			tAdapter = new PMTrackPointAdapter(this, listWorkTrack);
 			lvTrackPoint.setAdapter(tAdapter);
 		} else {
@@ -381,8 +367,6 @@ public class PMWorkTrackActivity extends PMActivity implements OnClickListener,
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		T.showShort(PMWorkTrackActivity.this, position + "   " + "纬度："
-				+ listWorkTrack.get(position).getLocAddress());
 	}
 
 	@Override
@@ -406,17 +390,15 @@ public class PMWorkTrackActivity extends PMActivity implements OnClickListener,
 		OverlayOptions oofirst = new MarkerOptions().position(desLatLng)
 				.icon(bitmap).zIndex(9).draggable(false);
 		mBaiduMap.addOverlay(oofirst);
-		WorkTrack workTrack = new WorkTrack();
-		workTrack.setDate(date);
-		workTrack.setDesc("这是我的工作轨迹点");
-		workTrack.setIsMark("1");
-		workTrack.setLatitude(desLatLng.latitude + "");
-		workTrack.setLongitude(desLatLng.longitude + "");
-		workTrack.setLocAddress(bdLocation.getAddrStr());
-		workTrack.setMarkIndex("1");
-		workTrack.setUserImei(PMApplication.getInstance().getImei());
-		workTrack.setUserName(share.getString(PMShareKey.USERNAME));
-		long workTrackId = workTrackDao.insert(workTrack);
-		L.e("插入数据成功返回的ID" + workTrackId + "\n" + workTrack.getDate());
+		mTrack.setDate(date);
+		mTrack.setDesc("这是我的工作轨迹点");
+		mTrack.setIsMark("1");
+		mTrack.setLatitude(desLatLng.latitude + "");
+		mTrack.setLongitude(desLatLng.longitude + "");
+		mTrack.setLocAddress(bdLocation.getAddrStr());
+		mTrack.setUserImei(PMApplication.getInstance().getImei());
+		mTrack.setUserName(share.getString(PMShareKey.USERNAME));
+		boolean s = mTrack.save();
+		L.e("插入数据成功返回的ID" + s + "\n" + mTrack.getDate());
 	}
 }

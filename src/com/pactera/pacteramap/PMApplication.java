@@ -1,6 +1,7 @@
 package com.pactera.pacteramap;
 
-import android.app.Application;
+import org.litepal.LitePalApplication;
+
 import android.os.Build;
 import android.telephony.TelephonyManager;
 
@@ -18,7 +19,7 @@ import com.pactera.pacteramap.model.PMDataProxy;
  * @author ChunfaLee
  * 
  */
-public class PMApplication extends Application {
+public class PMApplication extends LitePalApplication {
 	// 当前对象
 	private static PMApplication instance;
 	// 数据模型

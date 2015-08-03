@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pactera.pacteramap.R;
-import com.pactera.pacteramap.business.database.bean.WorkTrack;
+import com.pactera.pacteramap.sqlite.litepal.bean.WorkTrackBean;
 import com.pactera.pacteramap.util.T;
 import com.pactera.pacteramap.view.ui.PMRemarkActivity;
 
@@ -26,9 +26,9 @@ import com.pactera.pacteramap.view.ui.PMRemarkActivity;
  */
 public class PMTrackPointAdapter extends BaseAdapter {
 	private Context context;
-	private List<WorkTrack> list;
+	private List<WorkTrackBean> list;
 
-	public PMTrackPointAdapter(Context context, List<WorkTrack> listWorkTrack) {
+	public PMTrackPointAdapter(Context context, List<WorkTrackBean> listWorkTrack) {
 		this.context = context;
 		this.list = listWorkTrack;
 	}
