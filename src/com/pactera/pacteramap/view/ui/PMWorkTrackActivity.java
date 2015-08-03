@@ -397,7 +397,6 @@ public class PMWorkTrackActivity extends PMActivity implements OnClickListener,
 		CoordinateConverter converter = new CoordinateConverter();
 		converter.from(CoordType.COMMON);
 		// sourceLatLng待转换坐标
-
 		locLatLng = new LatLng(bdLocation.getLatitude(),
 				bdLocation.getLongitude());
 		converter.coord(locLatLng);
