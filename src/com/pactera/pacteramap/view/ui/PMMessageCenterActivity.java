@@ -263,7 +263,8 @@ public class PMMessageCenterActivity extends PMActivity implements
 				.setPositiveButton("确认", new OnClickListener() {
 					@Override
 					public void onClick(View v) {
-
+						mAppList.removeAll(mAppList);
+						mAdapter.notifyDataSetChanged();
 					}
 				}).setNegativeButton("取消", new OnClickListener() {
 					@Override
