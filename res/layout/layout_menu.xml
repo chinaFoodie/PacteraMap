@@ -90,6 +90,7 @@
             android:orientation="vertical" >
 
             <RelativeLayout
+                android:id="@+id/rl_wel_sign_in"
                 android:layout_width="fill_parent"
                 android:layout_height="45dp" >
 

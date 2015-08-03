@@ -146,6 +146,8 @@ public class PMWelcomeActivity extends PMActivity implements OnClickListener,
 		civLeftMenu.setOnClickListener(this);
 		tvUserName = (TextView) menu.findViewById(R.id.tv_left_menu_username);
 		tvUserName.setText("Archer");
+		menu.findViewById(R.id.rl_wel_sign_in).setOnClickListener(this);
+		;
 	}
 
 	/** 顶部滚动图片资源获取 */
@@ -229,6 +231,13 @@ public class PMWelcomeActivity extends PMActivity implements OnClickListener,
 									takPhoto();
 								}
 							}).show();
+			break;
+		/** 天转到签到界面 **/
+		case R.id.rl_wel_sign_in:
+			T.showShort(PMWelcomeActivity.this, "签到");
+			Intent signIntent = new Intent(PMWelcomeActivity.this,
+					PMSignInActivity.class);
+			startActivity(signIntent);
 			break;
 		default:
 			break;

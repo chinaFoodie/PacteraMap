@@ -99,13 +99,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- 首页 -->
-        <activity
-            android:name="com.pactera.pacteramap.view.ui.PMIndexActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:exported="false"
-            android:screenOrientation="portrait" >
-        </activity>
         <!-- 个人中心 -->
         <activity
             android:name="com.pactera.pacteramap.view.ui.PMUserHubActivity"
@@ -176,20 +169,23 @@
             android:exported="false"
             android:screenOrientation="portrait" >
         </activity>
-        <activity
-            android:name="com.pactera.pacteramap.view.ui.BNavigatorActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:exported="false"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name="com.pactera.pacteramap.view.ui.PMMainActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:exported="false"
-            android:screenOrientation="portrait" >
-        </activity>
+        <!-- 主页进入到App初始界面 -->
         <activity
             android:name="com.pactera.pacteramap.view.ui.PMWelcomeActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 消息详情界面 author Lee -->
+        <activity
+            android:name="com.pactera.pacteramap.view.ui.PMMessageDetailsActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 签到界面 author Lee -->
+        <activity
+            android:name="com.pactera.pacteramap.view.ui.PMSignInActivity"
             android:configChanges="orientation|keyboardHidden"
             android:exported="false"
             android:screenOrientation="portrait" >
@@ -211,7 +207,7 @@
         <service android:name="com.pactera.pacteramap.service.PMNotificationService" />
         <service android:name="com.pactera.pacteramap.service.PMLocationService" >
             <intent-filter>
-                <action android:name="com.pactera.pacteramap.service.LOCATION"/>
+                <action android:name="com.pactera.pacteramap.service.LOCATION" />
             </intent-filter>
         </service>
     </application>
