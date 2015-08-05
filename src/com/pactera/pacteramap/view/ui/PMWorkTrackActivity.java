@@ -3,10 +3,11 @@ package com.pactera.pacteramap.view.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.litepal.crud.DataSupport;
+
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -85,7 +86,6 @@ public class PMWorkTrackActivity extends PMActivity implements OnClickListener,
 	private PMTrackPointAdapter tAdapter;
 	private View markerLayout;
 	private PMSharePreferce share;
-	private SQLiteDatabase db;
 	private Boolean isStartRun = false;
 	private ServiceConnection sConnection;
 	private PMLocationService myService;
@@ -264,9 +264,9 @@ public class PMWorkTrackActivity extends PMActivity implements OnClickListener,
 	}
 
 	/** 获取地图上的工作轨迹点 */
-	@SuppressWarnings("static-access")
 	private List<LatLng> getWorkTrackLatlng() {
-		listWorkTrack = mTrack.findAll(WorkTrackBean.class);
+		listWorkTrack = DataSupport.where("date = ?", date).find(
+				WorkTrackBean.class);
 		list = new ArrayList<LatLng>();
 		if (listWorkTrack != null && listWorkTrack.size() > 0) {
 			for (WorkTrackBean workTrack : listWorkTrack) {
@@ -328,7 +328,7 @@ public class PMWorkTrackActivity extends PMActivity implements OnClickListener,
 	/** 绘制地图路径 ***/
 	private void drawMapLine() {
 		getWorkTrackLatlng();
-		if (list != null && list.size() > 0) {
+		if (list != null && list.size() > 1) {
 			OverlayOptions polygonOption = new PolylineOptions().points(list)
 					.color(Color.RED);
 			for (int i = 0; i < list.size(); i++) {
@@ -367,6 +367,8 @@ public class PMWorkTrackActivity extends PMActivity implements OnClickListener,
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
+		startActivity(new Intent(PMWorkTrackActivity.this,
+				PMRemarkActivity.class));
 	}
 
 	@Override

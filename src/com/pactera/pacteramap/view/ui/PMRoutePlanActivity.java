@@ -83,6 +83,7 @@ public class PMRoutePlanActivity extends PMActivity implements OnClickListener,
 			case 90501:
 				editSt.setText(msg.obj.toString());
 				editSt.setSelection(msg.obj.toString().length());
+				
 				break;
 			default:
 				break;
