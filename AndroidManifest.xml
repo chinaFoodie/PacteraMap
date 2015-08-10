@@ -99,6 +99,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- 登录界面 -->
+        <activity
+            android:name="com.pactera.pacteramap.view.ui.PMDoLoginActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait" >
+        </activity>
         <!-- 个人中心 -->
         <activity
             android:name="com.pactera.pacteramap.view.ui.PMUserHubActivity"

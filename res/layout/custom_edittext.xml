@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/et.withbg"
+    android:orientation="horizontal"
+    android:id="@+id/layout_custom_et_block"
+    >
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        style="@style/tv.edit_hint"
+        android:id="@+id/et_custom_hint"
+        />
+
+    <EditText
+        android:id="@+id/et_custom_edit"
+        style="@style/et.nobg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:singleLine="true"
+        android:textColor="@color/black" />
+
+</LinearLayout>

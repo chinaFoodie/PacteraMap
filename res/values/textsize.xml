@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- chat.xml -->
+    <dimen name="chat_img_btn_wh">40dp</dimen>
+    <dimen name="chat_img_btn_maring_tb">5dp</dimen>
+    <dimen name="chat_edittext_margin_top">7dp</dimen>
+    <dimen name="chat_send_btn_width">60dp</dimen>
+    <dimen name="chat_send_btn_textxize">15dp</dimen>
+   	<dimen name="chat_ll_expression_height">140dp</dimen>
+   	<dimen name="chat_vp_id_height">120dp</dimen>
+   	<dimen name="chat_dot_wh">6dp</dimen>
+   	<dimen name="chat_dot_margin_lr">5dp</dimen>
+   	<dimen name="chat_expression_wh">27dp</dimen>
+   	<dimen name="chat_edittext_size">17dp</dimen>
+   	<dimen name="chat_gv_padding_lr">5dp</dimen>
+   	<dimen name="chat_gv_padding_bt">10dp</dimen>
+   	<dimen name="chat_gv_spacing">10dp</dimen>
+    <dimen name="chat_expression_columns">7dp</dimen>
+    <dimen name="chat_expression_rows">3dp</dimen>
+    <!-- expression_list_item.xml -->
+    <dimen name="expression_list_item_iv_wh">30dp</dimen>
+    
+    <!-- chat_msg_listview_item.xml -->
+    <dimen name="chat_msg_listview_item_send_time_h">20dp</dimen>
+    <dimen name="chat_msg_listview_item_send_time_textsize">13dp</dimen>
+    <dimen name="chat_msg_listview_item_main_margin">5dp</dimen>
+    <dimen name="chat_msg_listview_item_face_wh">50dp</dimen>
+    <dimen name="chat_msg_listview_item_msg_textsize">12dp</dimen>
+    <dimen name="chat_msg_listview_item_msg_textsize_true">15sp</dimen>
+</resources>

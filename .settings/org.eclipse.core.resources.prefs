@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
+encoding//src/com/pactera/pacteramap/adapter/message/ExpressionImageAdapter.java=UTF-8
+encoding//src/com/pactera/pacteramap/adapter/message/MyPagerAdapter.java=UTF-8
+encoding//src/com/pactera/pacteramap/listener/MyOnPageChangeListener.java=UTF-8
+encoding//src/com/pactera/pacteramap/vo/Expression.java=UTF-8
 encoding/<project>=UTF-8

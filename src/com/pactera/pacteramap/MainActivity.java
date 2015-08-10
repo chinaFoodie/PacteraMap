@@ -1,21 +1,19 @@
 package com.pactera.pacteramap;
 
-import android.content.ComponentName;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.os.IBinder;
 
 import com.baidu.lbsapi.auth.LBSAuthManagerListener;
 import com.baidu.navisdk.BNaviEngineManager.NaviEngineInitListener;
 import com.baidu.navisdk.BaiduNaviManager;
-import com.pactera.pacteramap.service.PMLocationService;
-import com.pactera.pacteramap.util.L;
+import com.pactera.pacteramap.config.PMShareKey;
 import com.pactera.pacteramap.util.PMActivityUtil;
+import com.pactera.pacteramap.util.PMSharePreferce;
 import com.pactera.pacteramap.util.T;
 import com.pactera.pacteramap.view.PMActivity;
+import com.pactera.pacteramap.view.ui.PMDoLoginActivity;
 import com.pactera.pacteramap.view.ui.PMWelcomeActivity;
 
 /**
@@ -27,12 +25,14 @@ public class MainActivity extends PMActivity {
 	protected Thread thread;
 	@SuppressWarnings("unused")
 	private boolean mIsEngineInitSuccess = false;
+	private PMSharePreferce share;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.main_activity);
 		initNavi();
+		share = PMSharePreferce.getInstance(MainActivity.this);
 		handler = new Handler();
 		thread = new Thread(new childThread());
 		thread.start();
@@ -104,11 +104,12 @@ public class MainActivity extends PMActivity {
 		public void run() {
 			handler = null;
 			thread = null;
-			if (app.data.userSublist == null) {
-				PMActivityUtil.next(MainActivity.this, PMWelcomeActivity.class);
+			if ("".equals(share.getString(PMShareKey.USERNAME))) {
+				PMActivityUtil.next(MainActivity.this, PMDoLoginActivity.class);
 				MainActivity.this.finish();
 			} else {
-				PMActivityUtil.next(MainActivity.this, PMWelcomeActivity.class);
+				startActivity(new Intent(MainActivity.this,
+						PMWelcomeActivity.class));
 				MainActivity.this.finish();
 			}
 		}

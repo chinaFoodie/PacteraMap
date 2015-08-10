@@ -153,6 +153,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_wel_settings"
                 android:layout_width="fill_parent"
                 android:layout_height="45dp" >
 
