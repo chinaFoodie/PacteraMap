@@ -46,6 +46,7 @@ import com.baidu.mapapi.search.route.WalkingRouteResult;
 import com.pactera.pacteramap.R;
 import com.pactera.pacteramap.mapinterface.PMLocationCommand;
 import com.pactera.pacteramap.mapinterface.PMLocationInterface;
+import com.pactera.pacteramap.util.L;
 import com.pactera.pacteramap.view.PMActivity;
 import com.pactera.pacteramap.view.component.CustomProgress;
 
@@ -83,7 +84,7 @@ public class PMRoutePlanActivity extends PMActivity implements OnClickListener,
 			case 90501:
 				editSt.setText(msg.obj.toString());
 				editSt.setSelection(msg.obj.toString().length());
-				
+
 				break;
 			default:
 				break;
@@ -251,10 +252,11 @@ public class PMRoutePlanActivity extends PMActivity implements OnClickListener,
 	@Override
 	public void onGetWalkingRouteResult(WalkingRouteResult result) {
 		mProgress.dismiss();
-		if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
-			Toast.makeText(PMRoutePlanActivity.this, "抱歉，未找到结果",
-					Toast.LENGTH_SHORT).show();
-		}
+		// if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR)
+		// {
+		// Toast.makeText(PMRoutePlanActivity.this, "抱歉，未找到结果",
+		// Toast.LENGTH_SHORT).show();
+		// }
 		if (result.error == SearchResult.ERRORNO.AMBIGUOUS_ROURE_ADDR) {
 			// 起终点或途经点地址有岐义，通过以下接口获取建议查询信息
 			result.getSuggestAddrInfo();
@@ -278,13 +280,18 @@ public class PMRoutePlanActivity extends PMActivity implements OnClickListener,
 	@Override
 	public void onGetTransitRouteResult(TransitRouteResult result) {
 		mProgress.dismiss();
-		if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
-			Toast.makeText(PMRoutePlanActivity.this, "抱歉，未找到结果",
-					Toast.LENGTH_SHORT).show();
-		}
+		// if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR)
+		// {
+		// Toast.makeText(PMRoutePlanActivity.this, "抱歉，未找到结果",
+		// Toast.LENGTH_SHORT).show();
+		// }
 		if (result.error == SearchResult.ERRORNO.AMBIGUOUS_ROURE_ADDR) {
 			// 起终点或途经点地址有岐义，通过以下接口获取建议查询信息
 			result.getSuggestAddrInfo();
+			for (int i = 0; i < result.getSuggestAddrInfo().getSuggestEndNode()
+					.size(); i++) {
+				L.e(result.getSuggestAddrInfo().getSuggestEndNode().get(i).name);
+			}
 			return;
 		}
 		if (result.error == SearchResult.ERRORNO.NO_ERROR) {
@@ -304,10 +311,11 @@ public class PMRoutePlanActivity extends PMActivity implements OnClickListener,
 	@Override
 	public void onGetDrivingRouteResult(DrivingRouteResult result) {
 		mProgress.dismiss();
-		if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
-			Toast.makeText(PMRoutePlanActivity.this, "抱歉，未找到结果",
-					Toast.LENGTH_SHORT).show();
-		}
+		// if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR)
+		// {
+		// Toast.makeText(PMRoutePlanActivity.this, "抱歉，未找到结果",
+		// Toast.LENGTH_SHORT).show();
+		// }
 		if (result.error == SearchResult.ERRORNO.AMBIGUOUS_ROURE_ADDR) {
 			// 起终点或途经点地址有岐义，通过以下接口获取建议查询信息
 			result.getSuggestAddrInfo();

@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -23,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pactera.pacteramap.R;
+import com.pactera.pacteramap.util.T;
 import com.pactera.pacteramap.view.PMActivity;
 import com.pactera.pacteramap.view.component.AlertDialog;
 import com.pactera.pacteramap.view.component.PullToRefreshSwipeMenuListView;
@@ -148,19 +151,16 @@ public class PMMessageCenterActivity extends PMActivity implements
 		});
 		// other setting
 		// listView.setCloseInterpolator(new BounceInterpolator());
-		mListView.setOnItemLongClickListener(new OnItemLongClickListener() {
+		mListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public boolean onItemLongClick(AdapterView<?> parent, View view,
+			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				Toast.makeText(getApplicationContext(),
-						position + " long click", 0).show();
-				return false;
+				startActivity(new Intent(PMMessageCenterActivity.this,
+						PMMessageDetailsActivity.class));
 			}
 		});
 	}
-	
-	
 
 	private void onLoad() {
 		mListView.setRefreshTime(RefreshTime
