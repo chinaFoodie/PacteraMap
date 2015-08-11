@@ -1,5 +1,6 @@
 package com.pactera.pacteramap.view.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -57,8 +58,12 @@ public class PMSettingsActivity extends PMActivity implements OnClickListener {
 		case R.id.ll_tv_base_left:
 			PMSettingsActivity.this.finish();
 			break;
+		// 退出应用清除内存
 		case R.id.tv_settings_login_out:
-			
+			share.clearCache();
+			exit(0);
+			startActivity(new Intent(PMSettingsActivity.this,
+					PMDoLoginActivity.class));
 			break;
 		default:
 			break;
