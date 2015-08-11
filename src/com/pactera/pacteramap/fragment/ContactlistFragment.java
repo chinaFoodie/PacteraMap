@@ -13,10 +13,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.pactera.pacteramap.R;
 import com.pactera.pacteramap.adapter.SortAdapter;
@@ -25,7 +25,7 @@ import com.pactera.pacteramap.sqlite.litepal.bean.UserInfo;
 import com.pactera.pacteramap.view.component.SideBar;
 import com.pactera.pacteramap.view.component.SideBar.OnTouchingLetterChangedListener;
 import com.pactera.pacteramap.view.component.sortlist.PinyinComparator;
-import com.pactera.pacteramap.view.ui.PMMessageDetailsActivity;
+import com.pactera.pacteramap.view.ui.PMContactDetailsActivity;
 
 /**
  * 联系人界面
@@ -111,7 +111,7 @@ public class ContactlistFragment extends BaseFragment implements
 	@Override
 	public void onItemClick(AdapterView<?> adapter, View parent, int position,
 			long id) {
-		Intent chatIntent = new Intent(activity, PMMessageDetailsActivity.class);
+		Intent chatIntent = new Intent(activity, PMContactDetailsActivity.class);
 		chatIntent.putExtra("chat_name", listUser.get(position).getUserName());
 		activity.startActivity(chatIntent);
 	}

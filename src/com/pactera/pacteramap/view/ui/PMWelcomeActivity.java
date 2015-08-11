@@ -146,7 +146,7 @@ public class PMWelcomeActivity extends PMActivity implements OnClickListener,
 		}
 		civLeftMenu.setOnClickListener(this);
 		tvUserName = (TextView) menu.findViewById(R.id.tv_left_menu_username);
-		tvUserName.setText("Archer");
+		tvUserName.setText(share.getString(PMShareKey.USERNAME));
 		menu.findViewById(R.id.rl_wel_sign_in).setOnClickListener(this);
 		menu.findViewById(R.id.rl_wel_settings).setOnClickListener(this);
 	}

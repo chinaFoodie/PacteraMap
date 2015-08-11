@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/base_title_layout" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/img_contact_top_pic"
+                    android:layout_width="fill_parent"
+                    android:layout_height="140dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/contact_details_top" >
+                </ImageView>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/img_contact_top_pic" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="120dp"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/tv_contact_name"
+                            android:layout_width="fill_parent"
+                            android:layout_height="40dp"
+                            android:gravity="center_vertical"
+                            android:singleLine="true"
+                            android:textSize="22sp" />
+
+                        <TextView
+                            android:id="@+id/tv_contact_desc"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:singleLine="true" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <com.pactera.pacteramap.view.component.CircleImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="100dp"
+                    android:src="@drawable/user" />
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/actionsheet_gray" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp" >
+
+                <TextView
+                    android:id="@+id/tv_contact_birthday_type"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="生日:" />
+
+                <TextView
+                    android:id="@+id/tv_contact_birthday_value"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_toRightOf="@id/tv_contact_birthday_type"
+                    android:gravity="center_vertical" />
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/actionsheet_gray" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp" >
+
+                <TextView
+                    android:id="@+id/tv_contact_sex_type"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="性别:" />
+
+                <TextView
+                    android:id="@+id/tv_contact_sex_value"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_toRightOf="@id/tv_contact_sex_type"
+                    android:gravity="center_vertical" />
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@color/actionsheet_gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:paddingTop="20dp" >
+
+                <TextView
+                    android:id="@+id/tv_contact_send"
+                    style="@style/tv.btn"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/corners_background"
+                    android:gravity="center"
+                    android:text="发送信息" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

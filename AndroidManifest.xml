@@ -106,6 +106,13 @@
             android:exported="false"
             android:screenOrientation="portrait" >
         </activity>
+        <!-- 联系人详情界面 -->
+        <activity
+            android:name="com.pactera.pacteramap.view.ui.PMContactDetailsActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait" >
+        </activity>
         <!-- 注册界面 -->
         <activity
             android:name="com.pactera.pacteramap.view.ui.PMRegisterActivity"

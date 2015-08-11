@@ -24,7 +24,6 @@ import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ImageSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.MeasureSpec;
@@ -106,7 +105,6 @@ public class PMAddRemarkActivity extends PMActivity implements OnClickListener,
 
 		@Override
 		public void handleMessage(Message msg) {
-			Log.d("MyHandler", "handleMessage......");
 			super.handleMessage(msg);
 			Bundle b = msg.getData();
 			int vCmd = b.getInt("cmd");
