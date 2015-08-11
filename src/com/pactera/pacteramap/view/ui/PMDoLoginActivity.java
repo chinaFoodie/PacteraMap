@@ -64,16 +64,18 @@ public class PMDoLoginActivity extends PMActivity implements OnClickListener {
 				startActivity(new Intent(PMDoLoginActivity.this,
 						PMWelcomeActivity.class));
 				PMDoLoginActivity.this.finish();
+			} else {
+				T.showShort(PMDoLoginActivity.this, "用户不存在，请注册后再登录");
 			}
-			// UserInfo ui = new UserInfo();
-			// ui.setAge(Math.round(100) + "");
-			// ui.setAvatarUrl("http://img5.imgtn.bdimg.com/it/u=3638412718,2736228005&fm=21&gp=0.jpg");
-			// ui.setBirthday("2011-11-11");
-			// ui.setPassWord(passWord);
-			// ui.setSex("女");
-			// ui.setUserDesc("com.lidroid.xutils.exception.HttpException:unauthorized");
-			// ui.setUserName(userName);
-			// ui.save();
+		}
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (00001 == resultCode) {
+			Bundle b = data.getExtras();
+			dologin(b.getString("user_name"), b.getString("pass_word"));
 		}
 	}
 
@@ -87,6 +89,9 @@ public class PMDoLoginActivity extends PMActivity implements OnClickListener {
 		switch (v.getId()) {
 		// 注册
 		case R.id.tv_login_register:
+			Intent registIntent = new Intent(PMDoLoginActivity.this,
+					PMRegisterActivity.class);
+			startActivityForResult(registIntent, 0000);
 			break;
 		// 忘记密码
 		case R.id.tv_login_forget:

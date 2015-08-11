@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/base_title_layout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:paddingTop="30dp" >
+
+        <com.pactera.pacteramap.view.component.MyEditText
+            android:id="@+id/et_register_username"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp" >
+        </com.pactera.pacteramap.view.component.MyEditText>
+
+        <com.pactera.pacteramap.view.component.MyEditText
+            android:id="@+id/et_register_password"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp" >
+        </com.pactera.pacteramap.view.component.MyEditText>
+        <com.pactera.pacteramap.view.component.MyEditText
+            android:id="@+id/et_confir_password"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp" >
+        </com.pactera.pacteramap.view.component.MyEditText>
+
+        <TextView
+            android:id="@+id/tv_register_do"
+            style="@style/tv.btn"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/corners_background"
+            android:gravity="center"
+            android:text="注册" />
+    </LinearLayout>
+
+</LinearLayout>

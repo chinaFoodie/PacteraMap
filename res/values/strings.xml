@@ -19,6 +19,7 @@
     <string name="person">个人中心</string>
     <string name="user_name">用户名:</string>
     <string name="pass_word">密码:</string>
+    <string name="confir_password">确认密码:</string>
     <!--  -->
     <string name="xlistview_header_hint_normal">下拉刷新</string>
     <string name="xlistview_header_hint_ready">松开刷新数据</string>
