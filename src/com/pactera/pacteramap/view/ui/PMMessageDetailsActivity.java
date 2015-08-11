@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.litepal.crud.DataSupport;
+
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -29,7 +31,13 @@ import android.widget.TextView;
 import com.pactera.pacteramap.R;
 import com.pactera.pacteramap.adapter.message.ExpressionImageAdapter;
 import com.pactera.pacteramap.adapter.message.MyPagerAdapter;
+import com.pactera.pacteramap.config.PMShareKey;
 import com.pactera.pacteramap.listener.MyOnPageChangeListener;
+import com.pactera.pacteramap.sqlite.litepal.bean.MessageBean;
+import com.pactera.pacteramap.sqlite.litepal.bean.UserInfo;
+import com.pactera.pacteramap.util.PMSharePreferce;
+import com.pactera.pacteramap.util.PMUtil;
+import com.pactera.pacteramap.util.T;
 import com.pactera.pacteramap.view.PMActivity;
 import com.pactera.pacteramap.vo.Expression;
 
@@ -43,7 +51,7 @@ import com.pactera.pacteramap.vo.Expression;
 public class PMMessageDetailsActivity extends PMActivity implements
 		OnClickListener {
 	private LinearLayout llBack, ll_expression;;
-	private TextView tvTitle, tv_expression;
+	private TextView tvTitle, tv_expression, tvSend;
 	private ViewPager vp_id;
 	public static PMMessageDetailsActivity self;
 	public LinearLayout ll_vp_selected_index;
@@ -53,12 +61,16 @@ public class PMMessageDetailsActivity extends PMActivity implements
 	int columns = 6, rows = 3, pageExpressionCount = 3 * 6 - 1;
 	private EditText et_id;
 	private Intent preIntent;
+	private PMSharePreferce share;
+	private List<UserInfo> uiFrom = new ArrayList<UserInfo>();
+	private List<UserInfo> uiTo = new ArrayList<UserInfo>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.message_details_activity);
 		self = this;
+		share = PMSharePreferce.getInstance(this);
 		preIntent = this.getIntent();
 		init();
 	}
@@ -69,10 +81,15 @@ public class PMMessageDetailsActivity extends PMActivity implements
 		llBack.setOnClickListener(this);
 		tvTitle = (TextView) findViewById(R.id.tv_mid_title);
 		String midName = preIntent.getStringExtra("chat_name");
-		tvTitle.setText(midName);
+		uiFrom = DataSupport.where("userName = ?",
+				share.getString(PMShareKey.USERNAME)).find(UserInfo.class);
+		uiTo = DataSupport.where("userName = ?", midName).find(UserInfo.class);
+		tvTitle.setText(uiTo.get(0).getUserName());
 		ll_expression = (LinearLayout) findViewById(R.id.ll_expression);
 		vp_id = (ViewPager) findViewById(R.id.vp_id);
 		vp_id.setOnPageChangeListener(new MyOnPageChangeListener());
+		tvSend = (TextView) findViewById(R.id.tv_send_msg);
+		tvSend.setOnClickListener(this);
 		ll_vp_selected_index = (LinearLayout) findViewById(R.id.ll_vp_selected_index);
 		tv_expression = (TextView) findViewById(R.id.tv_expression);
 		tv_expression.setOnClickListener(this);
@@ -243,8 +260,13 @@ public class PMMessageDetailsActivity extends PMActivity implements
 	public void onClick(View view) {
 
 		switch (view.getId()) {
+		// 返回
 		case R.id.ll_tv_base_left:
 			PMMessageDetailsActivity.this.finish();
+			break;
+		// 发送消息
+		case R.id.tv_send_msg:
+			sendMsg(et_id.getText().toString(), uiTo.get(0), uiFrom.get(0));
 			break;
 		case R.id.tv_expression:
 			if (ll_expression.getVisibility() == View.GONE) {
@@ -259,6 +281,21 @@ public class PMMessageDetailsActivity extends PMActivity implements
 			break;
 		default:
 			break;
+		}
+	}
+
+	/**
+	 * 发送消息
+	 */
+	private void sendMsg(String content, UserInfo uiTo, UserInfo uiFrom) {
+		MessageBean mb = new MessageBean();
+		mb.setMsgAvatar(uiTo.getAvatarUrl());
+		mb.setMsgContent(content);
+		mb.setMsgDate(PMUtil.getCurrentDate());
+		mb.setMsgFrom(uiFrom.getUserName());
+		mb.setMsgTo(uiTo.getUserName());
+		if (mb.save()) {
+			T.showShort(this, "发送成功");
 		}
 	}
 

@@ -166,8 +166,11 @@ public class ChatAllHistoryFragment extends BaseFragment implements
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				startActivity(new Intent(activity,
-						PMMessageDetailsActivity.class));
+				Intent msgIntent = new Intent();
+				msgIntent.setClass(activity, PMMessageDetailsActivity.class);
+				msgIntent.putExtra("chat_name", listMsg.get(position - 1)
+						.getMsgFrom());
+				startActivity(msgIntent);
 			}
 		});
 	}
@@ -241,14 +244,16 @@ public class ChatAllHistoryFragment extends BaseFragment implements
 			ViewHolder holder = (ViewHolder) convertView.getTag();
 			MessageBean item = getItem(position);
 			holder.tv_name.setText(item.getMsgFrom());
+			holder.tv_content.setText(item.getMsgContent());
 			return convertView;
 		}
 
 		class ViewHolder {
-			TextView tv_name;
+			TextView tv_name, tv_content;
 
 			public ViewHolder(View view) {
 				tv_name = (TextView) view.findViewById(R.id.tv_name);
+				tv_content = (TextView) view.findViewById(R.id.tv_content);
 				view.setTag(this);
 			}
 		}

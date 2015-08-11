@@ -10,19 +10,12 @@ import org.litepal.crud.DataSupport;
  *
  */
 public class MessageBean extends DataSupport {
-	private String id;
 	private String msgTitle;
 	private String msgContent;
 	private String msgDate;
 	private String msgAvatar;
 	private String msgFrom;
 	private String msgTo;
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public String getMsgTitle() {
 		return msgTitle;
 	}
