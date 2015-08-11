@@ -5,19 +5,16 @@ import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.View;
 import android.view.Window;
 
 import com.pactera.pacteramap.PMApplication;
-import com.pactera.pacteramap.business.PMAdapterCallback;
 import com.pactera.pacteramap.business.PMInterface;
 
 /**
  * 所有Activity的基类，所有页面的Activity都需要继承该Activity
  */
 @TargetApi(Build.VERSION_CODES.KITKAT)
-public class PMActivity extends Activity implements PMInterface,
-		PMAdapterCallback {
+public class PMActivity extends Activity implements PMInterface {
 
 	public PMApplication app;
 
@@ -83,26 +80,6 @@ public class PMActivity extends Activity implements PMInterface,
 
 	@Override
 	public void CallBack(int tag, Object value) {
-
-	}
-
-	@Override
-	public void down(View v) {
-
-	}
-
-	@Override
-	public void down(View v, int id) {
-
-	}
-
-	@Override
-	public void up(View v) {
-
-	}
-
-	@Override
-	public void up(View v, int id) {
 
 	}
 }

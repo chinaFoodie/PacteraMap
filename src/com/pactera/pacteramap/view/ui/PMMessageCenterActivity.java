@@ -74,7 +74,7 @@ public class PMMessageCenterActivity extends PMActivity implements
 		rlNoMsg = (RelativeLayout) findViewById(R.id.rl_no_message_center);
 		imgRemove = (ImageView) findViewById(R.id.img_base_right);
 		imgRemove.setImageResource(R.drawable.pactera_remove);
-		/** 获取消息中心数据 **/
+		/** 获取消息中心数据，这里是根据当前注册用户获取显示 **/
 		mAppList = getPackageManager().getInstalledApplications(0);
 		mListView = (PullToRefreshSwipeMenuListView) findViewById(R.id.ptrlv_message_center);
 		mAdapter = new MessageAdapter();

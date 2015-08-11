@@ -113,30 +113,9 @@
             android:exported="false"
             android:screenOrientation="portrait" >
         </activity>
-        <!-- 个人中心 -->
+        <!-- 设置界面 -->
         <activity
-            android:name="com.pactera.pacteramap.view.ui.PMUserHubActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:exported="false"
-            android:screenOrientation="portrait" >
-        </activity>
-        <!-- 通知消息中心 -->
-        <activity
-            android:name="com.pactera.pacteramap.view.ui.PMNotificationHubActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:exported="false"
-            android:screenOrientation="portrait" >
-        </activity>
-        <!-- 通知消息详情 -->
-        <activity
-            android:name="com.pactera.pacteramap.view.ui.PMNotificationDetailActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:exported="false"
-            android:screenOrientation="portrait" >
-        </activity>
-        <!-- 用户登录 -->
-        <activity
-            android:name="com.pactera.pacteramap.view.ui.PMLoginActivity"
+            android:name="com.pactera.pacteramap.view.ui.PMSettingsActivity"
             android:configChanges="orientation|keyboardHidden"
             android:exported="false"
             android:screenOrientation="portrait" >

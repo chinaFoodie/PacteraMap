@@ -36,6 +36,7 @@ import com.pactera.pacteramap.view.component.CircleImageView;
 import com.pactera.pacteramap.view.component.slidingmenu.SlidingMenu;
 
 /**
+ * 登录成功或是自动登录之后进来的首页
  * 
  * @author ChunfaLee
  * @create 2015年7月29日09:22:12
@@ -232,14 +233,15 @@ public class PMWelcomeActivity extends PMActivity implements OnClickListener,
 								}
 							}).show();
 			break;
-		/** 天转到签到界面 **/
+		/** 跳转到签到界面 **/
 		case R.id.rl_wel_sign_in:
 			Intent signIntent = new Intent(PMWelcomeActivity.this,
 					PMSignInActivity.class);
 			startActivity(signIntent);
 			break;
 		case R.id.rl_wel_settings:
-			share.clearCache();
+			startActivity(new Intent(PMWelcomeActivity.this,
+					PMSettingsActivity.class));
 			break;
 		default:
 			break;
