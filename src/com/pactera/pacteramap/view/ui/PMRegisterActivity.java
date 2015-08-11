@@ -70,7 +70,7 @@ public class PMRegisterActivity extends PMActivity implements OnClickListener {
 			if (ui.save()) {
 				setResult(
 						00001,
-						new Intent(this, PMDoLoginActivity.class).putExtra(
+						new Intent(this, PMLoginActivity.class).putExtra(
 								"user_name", userName).putExtra("pass_word",
 								passWord));
 				PMRegisterActivity.this.finish();

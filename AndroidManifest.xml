@@ -101,7 +101,7 @@
         </activity>
         <!-- 登录界面 -->
         <activity
-            android:name="com.pactera.pacteramap.view.ui.PMDoLoginActivity"
+            android:name="com.pactera.pacteramap.view.ui.PMLoginActivity"
             android:configChanges="orientation|keyboardHidden"
             android:exported="false"
             android:screenOrientation="portrait" >

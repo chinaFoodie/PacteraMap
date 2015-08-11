@@ -13,7 +13,7 @@ import com.pactera.pacteramap.util.PMActivityUtil;
 import com.pactera.pacteramap.util.PMSharePreferce;
 import com.pactera.pacteramap.util.T;
 import com.pactera.pacteramap.view.PMActivity;
-import com.pactera.pacteramap.view.ui.PMDoLoginActivity;
+import com.pactera.pacteramap.view.ui.PMLoginActivity;
 import com.pactera.pacteramap.view.ui.PMWelcomeActivity;
 
 /**
@@ -105,7 +105,7 @@ public class MainActivity extends PMActivity {
 			handler = null;
 			thread = null;
 			if ("".equals(share.getString(PMShareKey.USERNAME))) {
-				PMActivityUtil.next(MainActivity.this, PMDoLoginActivity.class);
+				PMActivityUtil.next(MainActivity.this, PMLoginActivity.class);
 				MainActivity.this.finish();
 			} else {
 				startActivity(new Intent(MainActivity.this,

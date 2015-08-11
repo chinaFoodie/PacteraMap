@@ -63,7 +63,7 @@ public class PMSettingsActivity extends PMActivity implements OnClickListener {
 			share.clearCache();
 			exit(0);
 			startActivity(new Intent(PMSettingsActivity.this,
-					PMDoLoginActivity.class));
+					PMLoginActivity.class));
 			break;
 		default:
 			break;

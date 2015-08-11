@@ -24,7 +24,7 @@ import com.pactera.pacteramap.view.component.MyEditText;
  * @create 2015年8月10日11:41:05
  *
  */
-public class PMDoLoginActivity extends PMActivity implements OnClickListener {
+public class PMLoginActivity extends PMActivity implements OnClickListener {
 
 	private MyEditText etUserName, etPassWord;
 	private PMSharePreferce share;
@@ -32,8 +32,8 @@ public class PMDoLoginActivity extends PMActivity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.do_login_activity);
-		share = PMSharePreferce.getInstance(PMDoLoginActivity.this);
+		setContentView(R.layout.login_activity);
+		share = PMSharePreferce.getInstance(PMLoginActivity.this);
 		initView();
 	}
 
@@ -55,17 +55,17 @@ public class PMDoLoginActivity extends PMActivity implements OnClickListener {
 
 	private void dologin(String userName, String passWord) {
 		if ("".equals(userName) || "".equals(passWord)) {
-			T.showShort(PMDoLoginActivity.this, "用户名或密码不能为空");
+			T.showShort(PMLoginActivity.this, "用户名或密码不能为空");
 		} else {
 			List<UserInfo> ui = DataSupport.where("userName = ?", userName)
 					.find(UserInfo.class);
 			if (ui != null && ui.size() > 0) {
 				share.setCache(PMShareKey.USERNAME, userName);
-				startActivity(new Intent(PMDoLoginActivity.this,
+				startActivity(new Intent(PMLoginActivity.this,
 						PMWelcomeActivity.class));
-				PMDoLoginActivity.this.finish();
+				PMLoginActivity.this.finish();
 			} else {
-				T.showShort(PMDoLoginActivity.this, "用户不存在，请注册后再登录");
+				T.showShort(PMLoginActivity.this, "用户不存在，请注册后再登录");
 			}
 		}
 	}
@@ -89,7 +89,7 @@ public class PMDoLoginActivity extends PMActivity implements OnClickListener {
 		switch (v.getId()) {
 		// 注册
 		case R.id.tv_login_register:
-			Intent registIntent = new Intent(PMDoLoginActivity.this,
+			Intent registIntent = new Intent(PMLoginActivity.this,
 					PMRegisterActivity.class);
 			startActivityForResult(registIntent, 0000);
 			break;
