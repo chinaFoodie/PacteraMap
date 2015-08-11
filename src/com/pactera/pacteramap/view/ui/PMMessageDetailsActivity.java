@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -51,12 +52,14 @@ public class PMMessageDetailsActivity extends PMActivity implements
 	private ArrayList<GridView> grids;
 	int columns = 6, rows = 3, pageExpressionCount = 3 * 6 - 1;
 	private EditText et_id;
+	private Intent preIntent;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.message_details_activity);
 		self = this;
+		preIntent = this.getIntent();
 		init();
 	}
 
@@ -65,7 +68,8 @@ public class PMMessageDetailsActivity extends PMActivity implements
 		llBack.setVisibility(View.VISIBLE);
 		llBack.setOnClickListener(this);
 		tvTitle = (TextView) findViewById(R.id.tv_mid_title);
-		tvTitle.setText("小明");
+		String midName = preIntent.getStringExtra("chat_name");
+		tvTitle.setText(midName);
 		ll_expression = (LinearLayout) findViewById(R.id.ll_expression);
 		vp_id = (ViewPager) findViewById(R.id.vp_id);
 		vp_id.setOnPageChangeListener(new MyOnPageChangeListener());

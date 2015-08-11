@@ -33,5 +33,10 @@
     <color name="clear">#00ffffff</color>
     <color name="high_grey">#5d5d5d</color>
     <color name="btn_content">#157efb</color>
+    <!-- message -->
+    <color name="bottom_bar_normal_bg">#2D2F31</color>
+    <color name="common_bottom_bar_selected_bg">#161718</color>
+    <color name="common_bottom_bar_normal_bg">#2d2f31</color>
+    <color name="common_botton_bar_blue">#2ea7e0</color>
 
 </resources>

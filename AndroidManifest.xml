@@ -120,16 +120,16 @@
             android:exported="false"
             android:screenOrientation="portrait" >
         </activity>
-        <!-- 工作轨迹主界面 -->
+        <!-- 设置界面 -->
         <activity
-            android:name="com.pactera.pacteramap.view.ui.PMWorkTrackActivity"
+            android:name="com.pactera.pacteramap.view.ui.PMMessageActivity"
             android:configChanges="orientation|keyboardHidden"
             android:exported="false"
             android:screenOrientation="portrait" >
         </activity>
-        <!-- 消息中心 -->
+        <!-- 工作轨迹主界面 -->
         <activity
-            android:name="com.pactera.pacteramap.view.ui.PMMessageCenterActivity"
+            android:name="com.pactera.pacteramap.view.ui.PMWorkTrackActivity"
             android:configChanges="orientation|keyboardHidden"
             android:exported="false"
             android:screenOrientation="portrait" >

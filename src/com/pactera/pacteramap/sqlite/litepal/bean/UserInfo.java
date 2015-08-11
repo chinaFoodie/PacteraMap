@@ -17,6 +17,7 @@ public class UserInfo extends DataSupport {
 	private String age;
 	private String birthday;
 	private String sex;
+	private String sortLetters;
 
 	public String getUserName() {
 		return userName;
@@ -77,5 +78,13 @@ public class UserInfo extends DataSupport {
 	@Override
 	public String toString() {
 		return super.toString();
+	}
+
+	public String getSortLetters() {
+		return sortLetters;
+	}
+
+	public void setSortLetters(String sortLetters) {
+		this.sortLetters = sortLetters;
 	}
 }

@@ -12,6 +12,7 @@ import com.pactera.pacteramap.sqlite.litepal.bean.UserInfo;
 import com.pactera.pacteramap.util.T;
 import com.pactera.pacteramap.view.PMActivity;
 import com.pactera.pacteramap.view.component.MyEditText;
+import com.pactera.pacteramap.view.component.sortlist.CharacterParser;
 
 /**
  * 注册界面
@@ -24,11 +25,13 @@ public class PMRegisterActivity extends PMActivity implements OnClickListener {
 	private MyEditText etUserName, etPassWord, etConfir;
 	private TextView tvRegister, tvTitle;
 	private LinearLayout llBack;
+	private CharacterParser characterParser;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.register_activity);
+		characterParser = CharacterParser.getInstance();
 		initview();
 	}
 
@@ -65,6 +68,14 @@ public class PMRegisterActivity extends PMActivity implements OnClickListener {
 			ui.setBirthday("2011-11-11");
 			ui.setPassWord(passWord);
 			ui.setSex("女");
+			String pinyin = characterParser.getSelling(userName);
+			String sortString = pinyin.substring(0, 1).toUpperCase();
+			// 正则表达式，判断首字母是否是英文字母
+			if (sortString.matches("[A-Z]")) {
+				ui.setSortLetters(sortString);
+			} else {
+				ui.setSortLetters("#");
+			}
 			ui.setUserDesc("com.lidroid.xutils.exception.HttpException:unauthorized");
 			ui.setUserName(userName);
 			if (ui.save()) {

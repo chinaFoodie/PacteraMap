@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
 import android.view.Window;
 
@@ -14,7 +15,7 @@ import com.pactera.pacteramap.business.PMInterface;
  * 所有Activity的基类，所有页面的Activity都需要继承该Activity
  */
 @TargetApi(Build.VERSION_CODES.KITKAT)
-public class PMActivity extends Activity implements PMInterface {
+public class PMActivity extends FragmentActivity implements PMInterface {
 
 	public PMApplication app;
 
