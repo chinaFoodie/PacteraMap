@@ -115,44 +115,4 @@ public class StringUtil {
 		}
 		return prefix;
 	}
-
-	// public static String getRequestHeader(HttpGet request)
-	// {
-	// StringBuilder sb = new StringBuilder();
-	// sb.append(request.getRequestLine()).append("\r\n");
-	// Header[] requestHeaders = request.getAllHeaders();
-	// for(Header header : requestHeaders) {
-	// sb.append(header.toString());
-	// }
-	//
-	// return sb.toString();
-	//
-	// }
-	//
-	//
-	// public static String getRequestHeader(HttpPost request)
-	// {
-	// StringBuilder sb = new StringBuilder();
-	// sb.append(request.getRequestLine()).append("\r\n");
-	//
-	// Header[] requestHeaders = request.getAllHeaders();
-	// for(Header header : requestHeaders) {
-	// sb.append(header.toString());
-	// }
-	// sb.append("\r\n");
-	// try
-	// {
-	// if(request.getEntity() != null)
-	// {
-	// sb.append(EntityUtils.toString(request.getEntity(),
-	// "utf-8"));
-	// }
-	// }
-	// catch (Exception e)
-	// {
-	// e.printStackTrace();
-	// }
-	// return sb.toString();
-	//
-	// }
 }

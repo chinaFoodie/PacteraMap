@@ -49,7 +49,7 @@ import com.pactera.pacteramap.view.ui.PMMessageDetailsActivity;
  */
 public class ChatAllHistoryFragment extends BaseFragment implements
 		OnClickListener, IXListViewListener {
-	private List<MessageBean> listMsg;
+	private List<MessageBean> listMsg, listFrom;
 	private MessageAdapter mAdapter;
 	private PullToRefreshSwipeMenuListView mListView;
 	private Handler mHandler;
@@ -178,6 +178,9 @@ public class ChatAllHistoryFragment extends BaseFragment implements
 	private List<MessageBean> getMessage() {
 		listMsg = DataSupport.where("msgTo = ?",
 				share.getString(PMShareKey.USERNAME)).find(MessageBean.class);
+		listFrom = DataSupport.where("msgFrom = ?", share.getString(PMShareKey.USERNAME))
+				.find(MessageBean.class);
+		listMsg.addAll(listFrom);
 		return listMsg;
 	}
 

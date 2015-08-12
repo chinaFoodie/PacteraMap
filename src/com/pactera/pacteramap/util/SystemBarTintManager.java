@@ -520,7 +520,5 @@ public class SystemBarTintManager {
                 return 0;
             }
         }
-
     }
-
 }
