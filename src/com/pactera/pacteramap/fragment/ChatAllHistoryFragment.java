@@ -74,6 +74,11 @@ public class ChatAllHistoryFragment extends BaseFragment implements
 		init();
 	}
 
+	@Override
+	public void onResume() {
+		super.onResume();
+	}
+
 	/** 初始化视图 **/
 	private void init() {
 		tvTitle = (TextView) getView().findViewById(R.id.tv_mid_title);
