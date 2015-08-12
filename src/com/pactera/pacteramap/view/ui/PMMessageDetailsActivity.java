@@ -36,7 +36,6 @@ import com.pactera.pacteramap.listener.MyOnPageChangeListener;
 import com.pactera.pacteramap.sqlite.litepal.bean.MessageBean;
 import com.pactera.pacteramap.sqlite.litepal.bean.UserInfo;
 import com.pactera.pacteramap.util.PMSharePreferce;
-import com.pactera.pacteramap.util.PMUtil;
 import com.pactera.pacteramap.util.T;
 import com.pactera.pacteramap.view.PMActivity;
 import com.pactera.pacteramap.vo.Expression;
@@ -288,14 +287,18 @@ public class PMMessageDetailsActivity extends PMActivity implements
 	 * 发送消息
 	 */
 	private void sendMsg(String content, UserInfo uiTo, UserInfo uiFrom) {
-		MessageBean mb = new MessageBean();
-		mb.setMsgAvatar(uiTo.getAvatarUrl());
-		mb.setMsgContent(content);
-		mb.setMsgDate(PMUtil.getCurrentDate());
-		mb.setMsgFrom(uiFrom.getUserName());
-		mb.setMsgTo(uiTo.getUserName());
-		if (mb.save()) {
-			T.showShort(this, "发送成功");
+		if ("".equals(content)) {
+			T.showShort(this, "发送内容不能为空");
+		} else {
+			MessageBean mb = new MessageBean();
+			mb.setMsgAvatar(uiTo.getAvatarUrl());
+			mb.setMsgContent(content);
+			mb.setMsgDate(System.currentTimeMillis() + "");
+			mb.setMsgFrom(uiFrom.getUserName());
+			mb.setMsgTo(uiTo.getUserName());
+			if (mb.save()) {
+				T.showShort(this, "发送成功");
+			}
 		}
 	}
 

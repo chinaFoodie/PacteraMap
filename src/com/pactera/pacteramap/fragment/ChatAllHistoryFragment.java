@@ -28,6 +28,7 @@ import com.pactera.pacteramap.R;
 import com.pactera.pacteramap.base.BaseFragment;
 import com.pactera.pacteramap.config.PMShareKey;
 import com.pactera.pacteramap.sqlite.litepal.bean.MessageBean;
+import com.pactera.pacteramap.util.PMDateUtil;
 import com.pactera.pacteramap.util.PMSharePreferce;
 import com.pactera.pacteramap.view.component.AlertDialog;
 import com.pactera.pacteramap.view.component.PullToRefreshSwipeMenuListView;
@@ -176,10 +177,12 @@ public class ChatAllHistoryFragment extends BaseFragment implements
 	}
 
 	private List<MessageBean> getMessage() {
-		listMsg = DataSupport.where("msgTo = ?",
-				share.getString(PMShareKey.USERNAME)).find(MessageBean.class);
-		listFrom = DataSupport.where("msgFrom = ?", share.getString(PMShareKey.USERNAME))
-				.find(MessageBean.class);
+		listMsg = DataSupport
+				.where("msgTo = ?", share.getString(PMShareKey.USERNAME))
+				.order("msgDate desc").find(MessageBean.class);
+		listFrom = DataSupport
+				.where("msgFrom = ?", share.getString(PMShareKey.USERNAME))
+				.order("msgDate desc").find(MessageBean.class);
 		listMsg.addAll(listFrom);
 		return listMsg;
 	}
@@ -246,17 +249,24 @@ public class ChatAllHistoryFragment extends BaseFragment implements
 			}
 			ViewHolder holder = (ViewHolder) convertView.getTag();
 			MessageBean item = getItem(position);
-			holder.tv_name.setText(item.getMsgFrom());
+			if (share.getString(PMShareKey.USERNAME).equals(item.getMsgFrom())) {
+				holder.tv_name.setText(item.getMsgTo());
+			} else {
+				holder.tv_name.setText(item.getMsgFrom());
+			}
 			holder.tv_content.setText(item.getMsgContent());
+			holder.tv_date
+					.setText(PMDateUtil.getStandardDate(item.getMsgDate()));
 			return convertView;
 		}
 
 		class ViewHolder {
-			TextView tv_name, tv_content;
+			TextView tv_name, tv_content, tv_date;
 
 			public ViewHolder(View view) {
 				tv_name = (TextView) view.findViewById(R.id.tv_name);
 				tv_content = (TextView) view.findViewById(R.id.tv_content);
+				tv_date = (TextView) view.findViewById(R.id.tv_date);
 				view.setTag(this);
 			}
 		}
