@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/rl_msg_mine"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/chat_msg_listview_item_main_margin" >
+
+            <ImageView
+                android:id="@+id/raiv_faceico_mine"
+                android:layout_width="@dimen/chat_msg_listview_item_face_wh"
+                android:layout_height="@dimen/chat_msg_listview_item_face_wh"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:focusable="false"
+                android:src="@null" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="@dimen/chat_msg_listview_item_main_margin"
+                android:layout_toLeftOf="@id/raiv_faceico_mine"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_mine_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical|top"
+                    android:layout_margin="1dp"
+                    android:gravity="center"
+                    android:text="daobo.yuan"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/chat_msg_listview_item_msg_textsize" />
+
+                <TextView
+                    android:id="@+id/tv_msg_content_mine"
+                    style="@style/chat_content_date_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:background="@drawable/chatto_bg"
+                    android:clickable="true"
+                    android:longClickable="true"
+                    android:text="" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_msg_friend"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/chat_msg_listview_item_main_margin"
+            android:visibility="visible" >
+
+            <ImageView
+                android:id="@+id/raiv_faceico_friend"
+                android:layout_width="@dimen/chat_msg_listview_item_face_wh"
+                android:layout_height="@dimen/chat_msg_listview_item_face_wh"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:focusable="false"
+                android:src="@null" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="@dimen/chat_msg_listview_item_main_margin"
+                android:layout_marginRight="0dp"
+                android:layout_toRightOf="@id/raiv_faceico_friend"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_friend_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_vertical|top"
+                    android:layout_margin="1dp"
+                    android:gravity="center"
+                    android:text="daobo.yuan"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/chat_msg_listview_item_msg_textsize" />
+
+                <TextView
+                    android:id="@+id/tv_msg_content_friend"
+                    style="@style/chat_content_date_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/chatfrom_bg"
+                    android:clickable="true"
+                    android:longClickable="true"
+                    android:text="" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

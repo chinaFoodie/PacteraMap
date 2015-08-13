@@ -26,9 +26,11 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.pactera.pacteramap.R;
+import com.pactera.pacteramap.adapter.message.ChatMessageAdapter;
 import com.pactera.pacteramap.adapter.message.ExpressionImageAdapter;
 import com.pactera.pacteramap.adapter.message.MyPagerAdapter;
 import com.pactera.pacteramap.config.PMShareKey;
@@ -63,6 +65,9 @@ public class PMMessageDetailsActivity extends PMActivity implements
 	private PMSharePreferce share;
 	private List<UserInfo> uiFrom = new ArrayList<UserInfo>();
 	private List<UserInfo> uiTo = new ArrayList<UserInfo>();
+	private ListView lvChat;
+	private ChatMessageAdapter adapter;
+	private List<MessageBean> listMsg;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +90,7 @@ public class PMMessageDetailsActivity extends PMActivity implements
 		uiTo = DataSupport.where("userName = ?", midName).find(UserInfo.class);
 		tvTitle.setText(uiTo.get(0).getUserName());
 		ll_expression = (LinearLayout) findViewById(R.id.ll_expression);
+		lvChat = (ListView) findViewById(R.id.lv_chat_message);
 		vp_id = (ViewPager) findViewById(R.id.vp_id);
 		vp_id.setOnPageChangeListener(new MyOnPageChangeListener());
 		tvSend = (TextView) findViewById(R.id.tv_send_msg);
@@ -94,6 +100,17 @@ public class PMMessageDetailsActivity extends PMActivity implements
 		tv_expression.setOnClickListener(this);
 		et_id = (EditText) findViewById(R.id.et_id);
 		initViewPager();
+		adapter = new ChatMessageAdapter(this, getMessageList(midName,
+				share.getString(PMShareKey.USERNAME)));
+		lvChat.setAdapter(adapter);
+	}
+
+	private List<MessageBean> getMessageList(String chatName, String mine) {
+		listMsg = new ArrayList<MessageBean>();
+		DataSupport.findBySQL("");
+		DataSupport.where("msgFrom = ? and msgTo = ?", chatName, mine).find(
+				MessageBean.class);
+		return listMsg;
 	}
 
 	@SuppressWarnings("deprecation")
