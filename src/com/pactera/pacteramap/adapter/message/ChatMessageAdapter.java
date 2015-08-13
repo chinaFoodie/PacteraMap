@@ -87,7 +87,7 @@ public class ChatMessageAdapter extends BaseAdapter {
 			holder = (ViewHolder) convertView.getTag();
 		}
 		String content = msgConvert(replaceSpaceToCode(mb.getMsgContent()));
-		if (!mb.getMsgTo().equals(share.getString(PMShareKey.USERNAME))) {
+		if (mb.getMsgFrom().equals(share.getString(PMShareKey.USERNAME))) {
 			holder.rl_msg_friend.setVisibility(View.GONE);
 			holder.rl_msg_mine.setVisibility(View.VISIBLE);
 			holder.raiv_faceico_mine.setBackgroundResource(R.drawable.user);

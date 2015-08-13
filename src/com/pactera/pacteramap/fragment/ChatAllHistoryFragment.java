@@ -50,7 +50,7 @@ import com.pactera.pacteramap.view.ui.PMMessageDetailsActivity;
  */
 public class ChatAllHistoryFragment extends BaseFragment implements
 		OnClickListener, IXListViewListener {
-	private List<MessageBean> listMsg, listFrom;
+	private List<MessageBean> listMsg;
 	private MessageAdapter mAdapter;
 	private PullToRefreshSwipeMenuListView mListView;
 	private Handler mHandler;
@@ -174,8 +174,14 @@ public class ChatAllHistoryFragment extends BaseFragment implements
 					int position, long id) {
 				Intent msgIntent = new Intent();
 				msgIntent.setClass(activity, PMMessageDetailsActivity.class);
-				msgIntent.putExtra("chat_name", listMsg.get(position - 1)
-						.getMsgFrom());
+				if (listMsg.get(position - 1).getMsgFrom()
+						.equals(share.getString(PMShareKey.USERNAME))) {
+					msgIntent.putExtra("chat_name", listMsg.get(position - 1)
+							.getMsgTo());
+				} else {
+					msgIntent.putExtra("chat_name", listMsg.get(position - 1)
+							.getMsgFrom());
+				}
 				startActivity(msgIntent);
 			}
 		});
@@ -183,12 +189,10 @@ public class ChatAllHistoryFragment extends BaseFragment implements
 
 	private List<MessageBean> getMessage() {
 		listMsg = DataSupport
-				.where("msgTo = ?", share.getString(PMShareKey.USERNAME))
+				.where("msgTo = ? or msgFrom = ?",
+						share.getString(PMShareKey.USERNAME),
+						share.getString(PMShareKey.USERNAME))
 				.order("msgDate desc").find(MessageBean.class);
-		listFrom = DataSupport
-				.where("msgFrom = ?", share.getString(PMShareKey.USERNAME))
-				.order("msgDate desc").find(MessageBean.class);
-		listMsg.addAll(listFrom);
 		return listMsg;
 	}
 

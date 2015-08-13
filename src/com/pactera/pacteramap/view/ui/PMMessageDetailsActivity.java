@@ -18,6 +18,7 @@ import android.text.style.ImageSpan;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -103,13 +104,26 @@ public class PMMessageDetailsActivity extends PMActivity implements
 		adapter = new ChatMessageAdapter(this, getMessageList(midName,
 				share.getString(PMShareKey.USERNAME)));
 		lvChat.setAdapter(adapter);
+		lvChat.setSelection(listMsg.size());
+		et_id.setOnClickListener(this);
+		et_id.setOnFocusChangeListener(new OnFocusChangeListener() {
+
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				if (hasFocus) {
+					ll_expression.setVisibility(View.GONE);
+					lvChat.setSelection(listMsg.size());
+				} else {
+					lvChat.setSelection(listMsg.size());
+				}
+			}
+		});
 	}
 
 	private List<MessageBean> getMessageList(String chatName, String mine) {
 		listMsg = new ArrayList<MessageBean>();
-		DataSupport.findBySQL("");
-		DataSupport.where("msgFrom = ? and msgTo = ?", chatName, mine).find(
-				MessageBean.class);
+		listMsg = DataSupport.where("msgFrom = ? or msgTo = ?", mine, mine)
+				.find(MessageBean.class);
 		return listMsg;
 	}
 
@@ -274,7 +288,6 @@ public class PMMessageDetailsActivity extends PMActivity implements
 
 	@Override
 	public void onClick(View view) {
-
 		switch (view.getId()) {
 		// 返回
 		case R.id.ll_tv_base_left:
@@ -283,6 +296,10 @@ public class PMMessageDetailsActivity extends PMActivity implements
 		// 发送消息
 		case R.id.tv_send_msg:
 			sendMsg(et_id.getText().toString(), uiTo.get(0), uiFrom.get(0));
+			break;
+		case R.id.et_id:
+			ll_expression.setVisibility(View.GONE);
+			lvChat.setSelection(listMsg.size());
 			break;
 		case R.id.tv_expression:
 			if (ll_expression.getVisibility() == View.GONE) {
@@ -294,6 +311,7 @@ public class PMMessageDetailsActivity extends PMActivity implements
 			} else {
 				ll_expression.setVisibility(View.GONE);
 			}
+			lvChat.setSelection(listMsg.size());
 			break;
 		default:
 			break;
@@ -315,8 +333,16 @@ public class PMMessageDetailsActivity extends PMActivity implements
 			mb.setMsgTo(uiTo.getUserName());
 			if (mb.save()) {
 				T.showShort(this, "发送成功");
+				et_id.setText("");// 清空发送输入框
+				listMsg.add(mb);
+				adapter.notifyDataSetChanged();
+				lvChat.setSelection(listMsg.size());
 			}
 		}
+		((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE))
+				.hideSoftInputFromWindow(this.getCurrentFocus()
+						.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+		ll_expression.setVisibility(View.GONE);
 	}
 
 	/**
