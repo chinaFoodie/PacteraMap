@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp" >
+
+        <ImageView
+            android:id="@+id/img_choice_position"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/icon_gcoding" />
+
+        <TextView
+            android:id="@+id/tv_choice_position"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/img_choice_position"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="终点位置" />
+    </RelativeLayout>
+
+</RelativeLayout>

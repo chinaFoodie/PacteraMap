@@ -47,7 +47,7 @@ public class PMRemarkDetailsActivity extends PMActivity implements
 		tvRight = (TextView) findViewById(R.id.tv_base_right);
 		tvRight.setText("下一条");
 		llRight = (LinearLayout) findViewById(R.id.ll_tv_base_right);
-		llRight.setVisibility(View.VISIBLE);
+		llRight.setVisibility(View.GONE);
 		llRight.setOnClickListener(this);
 	}
 

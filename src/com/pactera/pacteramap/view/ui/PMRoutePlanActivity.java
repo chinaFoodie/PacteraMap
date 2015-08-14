@@ -1,5 +1,8 @@
 package com.pactera.pacteramap.view.ui;
 
+import java.util.ArrayList;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -46,7 +49,6 @@ import com.baidu.mapapi.search.route.WalkingRouteResult;
 import com.pactera.pacteramap.R;
 import com.pactera.pacteramap.mapinterface.PMLocationCommand;
 import com.pactera.pacteramap.mapinterface.PMLocationInterface;
-import com.pactera.pacteramap.util.L;
 import com.pactera.pacteramap.view.PMActivity;
 import com.pactera.pacteramap.view.component.CustomProgress;
 
@@ -84,7 +86,7 @@ public class PMRoutePlanActivity extends PMActivity implements OnClickListener,
 			case 90501:
 				editSt.setText(msg.obj.toString());
 				editSt.setSelection(msg.obj.toString().length());
-
+				PMLocationCommand.mLocationClient.stop();
 				break;
 			default:
 				break;
@@ -249,17 +251,16 @@ public class PMRoutePlanActivity extends PMActivity implements OnClickListener,
 		super.onRestoreInstanceState(savedInstanceState);
 	}
 
+	/******** 步行路径规划 ******/
 	@Override
 	public void onGetWalkingRouteResult(WalkingRouteResult result) {
 		mProgress.dismiss();
-		// if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR)
-		// {
-		// Toast.makeText(PMRoutePlanActivity.this, "抱歉，未找到结果",
-		// Toast.LENGTH_SHORT).show();
 		// }
 		if (result.error == SearchResult.ERRORNO.AMBIGUOUS_ROURE_ADDR) {
 			// 起终点或途经点地址有岐义，通过以下接口获取建议查询信息
 			result.getSuggestAddrInfo();
+			/********* 利用回调规划路径 ************/
+			jumpToChoicePostion(result);
 			return;
 		}
 		if (result.error == SearchResult.ERRORNO.NO_ERROR) {
@@ -277,21 +278,30 @@ public class PMRoutePlanActivity extends PMActivity implements OnClickListener,
 
 	}
 
+	private void jumpToChoicePostion(WalkingRouteResult result) {
+		ArrayList<String> temp = new ArrayList<String>();
+		for (int i = 0; i < result.getSuggestAddrInfo().getSuggestEndNode()
+				.size(); i++) {
+			if (!result.getSuggestAddrInfo().getSuggestEndNode().get(i).name
+					.endsWith(editEn.getText().toString())) {
+				temp.add(result.getSuggestAddrInfo().getSuggestEndNode().get(i).name);
+			}
+		}
+		Intent intent = new Intent(PMRoutePlanActivity.this,
+				PMChoicePositionActivity.class);
+		intent.putStringArrayListExtra("list_position", temp);
+		startActivityForResult(intent, 100);
+	}
+
+	/******** 公交路径规划 ******/
 	@Override
 	public void onGetTransitRouteResult(TransitRouteResult result) {
 		mProgress.dismiss();
-		// if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR)
-		// {
-		// Toast.makeText(PMRoutePlanActivity.this, "抱歉，未找到结果",
-		// Toast.LENGTH_SHORT).show();
-		// }
 		if (result.error == SearchResult.ERRORNO.AMBIGUOUS_ROURE_ADDR) {
 			// 起终点或途经点地址有岐义，通过以下接口获取建议查询信息
 			result.getSuggestAddrInfo();
-			for (int i = 0; i < result.getSuggestAddrInfo().getSuggestEndNode()
-					.size(); i++) {
-				L.e(result.getSuggestAddrInfo().getSuggestEndNode().get(i).name);
-			}
+			/********* 利用回调规划路径 ************/
+			jumpToChoicePostion(result);
 			return;
 		}
 		if (result.error == SearchResult.ERRORNO.NO_ERROR) {
@@ -308,17 +318,15 @@ public class PMRoutePlanActivity extends PMActivity implements OnClickListener,
 		}
 	}
 
+	/******** 驾车路径规划 ******/
 	@Override
 	public void onGetDrivingRouteResult(DrivingRouteResult result) {
 		mProgress.dismiss();
-		// if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR)
-		// {
-		// Toast.makeText(PMRoutePlanActivity.this, "抱歉，未找到结果",
-		// Toast.LENGTH_SHORT).show();
-		// }
 		if (result.error == SearchResult.ERRORNO.AMBIGUOUS_ROURE_ADDR) {
 			// 起终点或途经点地址有岐义，通过以下接口获取建议查询信息
 			result.getSuggestAddrInfo();
+			/********* 利用回调规划路径 ************/
+			jumpToChoicePostion(result);
 			return;
 		}
 		if (result.error == SearchResult.ERRORNO.NO_ERROR) {
@@ -332,6 +340,50 @@ public class PMRoutePlanActivity extends PMActivity implements OnClickListener,
 			overlay.setData(result.getRouteLines().get(0));
 			overlay.addToMap();
 			overlay.zoomToSpan();
+		}
+	}
+
+	private void jumpToChoicePostion(DrivingRouteResult result) {
+		ArrayList<String> temp = new ArrayList<String>();
+		for (int i = 0; i < result.getSuggestAddrInfo().getSuggestEndNode()
+				.size(); i++) {
+			if (!result.getSuggestAddrInfo().getSuggestEndNode().get(i).name
+					.endsWith(editEn.getText().toString())) {
+				temp.add(result.getSuggestAddrInfo().getSuggestEndNode().get(i).name);
+			}
+		}
+		Intent intent = new Intent(PMRoutePlanActivity.this,
+				PMChoicePositionActivity.class);
+		intent.putStringArrayListExtra("list_position", temp);
+		startActivityForResult(intent, 100);
+	}
+
+	/************************ 跳转到选择终点位置界面 *************************/
+	private void jumpToChoicePostion(TransitRouteResult result) {
+		ArrayList<String> temp = new ArrayList<String>();
+		for (int i = 0; i < result.getSuggestAddrInfo().getSuggestEndNode()
+				.size(); i++) {
+			if (!result.getSuggestAddrInfo().getSuggestEndNode().get(i).name
+					.endsWith(editEn.getText().toString())) {
+				temp.add(result.getSuggestAddrInfo().getSuggestEndNode().get(i).name);
+			}
+		}
+		Intent intent = new Intent(PMRoutePlanActivity.this,
+				PMChoicePositionActivity.class);
+		intent.putStringArrayListExtra("list_position", temp);
+		PMRoutePlanActivity.this.startActivityForResult(intent, 100);
+	}
+
+	/************************ 跳转到选择终点位置界面 *************************/
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (100 == requestCode) {
+			if (00002 == resultCode) {
+				Bundle b = data.getExtras();
+				editEn.setText(b.getString("position"));
+			}
 		}
 	}
 

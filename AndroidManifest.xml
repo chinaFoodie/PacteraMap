@@ -127,6 +127,13 @@
             android:exported="false"
             android:screenOrientation="portrait" >
         </activity>
+        <!-- 选择路径终点界面 -->
+        <activity
+            android:name="com.pactera.pacteramap.view.ui.PMChoicePositionActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:screenOrientation="portrait" >
+        </activity>
         <!-- 设置界面 -->
         <activity
             android:name="com.pactera.pacteramap.view.ui.PMSettingsActivity"
