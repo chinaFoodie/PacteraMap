@@ -21,6 +21,7 @@
             android:orientation="vertical" >
 
             <EditText
+                android:id="@+id/et_remark_title"
                 android:layout_width="fill_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/shape_no_corner_without_bottom"
@@ -55,12 +56,19 @@
                     android:layout_weight="1"
                     android:src="@drawable/iconfontluyin" />
 
-                <ImageView
-                    android:id="@+id/img_add_remark_psw"
+                <RelativeLayout
                     android:layout_width="36dp"
                     android:layout_height="36dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/iconfontmima" />
+                    android:layout_weight="1" >
+
+                    <CheckBox
+                        android:id="@+id/img_add_remark_psw"
+                        style="@style/customCheckboxTheme"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:checked="true" />
+                </RelativeLayout>
 
                 <ImageView
                     android:id="@+id/img_add_remark_location"

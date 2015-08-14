@@ -68,7 +68,7 @@ public class PMAddRemarkActivity extends PMActivity implements OnClickListener,
 	private TextView tvTitle, tvRight, tvAudioing;
 	private LinearLayout llBack, llRight;
 	private RelativeLayout rlAuudio;
-	private EditText etContent;
+	private EditText etContent, etTitle;
 	private Editable etableText;
 	private View viewAudio;
 	private Button btnFinish;
@@ -174,6 +174,7 @@ public class PMAddRemarkActivity extends PMActivity implements OnClickListener,
 		rlAuudio = (RelativeLayout) findViewById(R.id.rl_radio);
 		etContent = (EditText) findViewById(R.id.et_add_reamark_content);
 		etableText = etContent.getEditableText();
+		etTitle = (EditText) findViewById(R.id.et_remark_title);
 	}
 
 	private void setSpanClickable() {
@@ -222,6 +223,13 @@ public class PMAddRemarkActivity extends PMActivity implements OnClickListener,
 			break;
 		/** 保存参数 */
 		case R.id.ll_tv_base_right:
+			if ("".equals(etTitle.getText().toString())
+					|| "".equals(etContent.getText().toString())) {
+				T.showShort(this, "备忘录内容不能为空");
+			} else {
+				PMAddRemarkActivity.this.finish();
+				T.showShort(this, "保存成功");
+			}
 			break;
 		case R.id.img_add_remark_image:
 			Intent intent = new Intent(Intent.ACTION_PICK, null);

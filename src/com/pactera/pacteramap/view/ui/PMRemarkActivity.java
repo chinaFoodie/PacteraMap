@@ -1,5 +1,8 @@
 package com.pactera.pacteramap.view.ui;
 
+import java.io.Serializable;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -32,6 +35,7 @@ public class PMRemarkActivity extends PMActivity implements OnClickListener,
 	private LinearLayout llBack, llMore;
 	private ListView lvRecord;
 	private PMRemarkAdapter remarkAdapter;
+	private PMRemark remark;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -94,8 +98,12 @@ public class PMRemarkActivity extends PMActivity implements OnClickListener,
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		PMActivityUtil.next(PMRemarkActivity.this,
+		Intent detailsIntent = new Intent(PMRemarkActivity.this,
 				PMRemarkDetailsActivity.class);
+		Bundle bundle = new Bundle();
+		bundle.putSerializable("remark_data", (Serializable) remark.data.get(position));
+		detailsIntent.putExtras(bundle);
+		startActivity(detailsIntent);
 	}
 
 	/**
@@ -104,8 +112,7 @@ public class PMRemarkActivity extends PMActivity implements OnClickListener,
 	@Override
 	public void CallBack(Object value) {
 		super.CallBack(value);
-		PMRemark remark = PMGsonUtil
-				.getPerson(value.toString(), PMRemark.class);
+		remark = PMGsonUtil.getPerson(value.toString(), PMRemark.class);
 		if (remark != null) {
 			remarkAdapter = new PMRemarkAdapter(PMRemarkActivity.this,
 					remark.data);

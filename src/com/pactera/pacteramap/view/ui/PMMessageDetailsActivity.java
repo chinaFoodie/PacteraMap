@@ -38,6 +38,7 @@ import com.pactera.pacteramap.config.PMShareKey;
 import com.pactera.pacteramap.listener.MyOnPageChangeListener;
 import com.pactera.pacteramap.sqlite.litepal.bean.MessageBean;
 import com.pactera.pacteramap.sqlite.litepal.bean.UserInfo;
+import com.pactera.pacteramap.util.ListSortUtil;
 import com.pactera.pacteramap.util.PMSharePreferce;
 import com.pactera.pacteramap.util.T;
 import com.pactera.pacteramap.view.PMActivity;
@@ -122,8 +123,13 @@ public class PMMessageDetailsActivity extends PMActivity implements
 
 	private List<MessageBean> getMessageList(String chatName, String mine) {
 		listMsg = new ArrayList<MessageBean>();
-		listMsg = DataSupport.where("msgFrom = ? or msgTo = ?", mine, mine)
-				.find(MessageBean.class);
+		listMsg = DataSupport
+				.where("msgFrom = ? and msgTo = ?", chatName, mine).find(
+						MessageBean.class);
+		listMsg.addAll(DataSupport.where("msgFrom = ? and msgTo = ?", mine,
+				chatName).find(MessageBean.class));
+		ListSortUtil<MessageBean> sortList = new ListSortUtil<MessageBean>();
+		sortList.sort(listMsg, "msgDate", "asc");
 		return listMsg;
 	}
 

@@ -20,7 +20,11 @@ public class PMRemark implements Serializable {
 	public String code;
 	public ArrayList<Data> data;
 
-	public class Data {
+	public class Data implements Serializable {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = -5408932183223205200L;
 		public String id;
 		/**
 		 * 备忘录标题

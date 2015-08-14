@@ -1,5 +1,6 @@
 package com.pactera.pacteramap.view.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import com.pactera.pacteramap.R;
 import com.pactera.pacteramap.util.T;
 import com.pactera.pacteramap.view.PMActivity;
+import com.pactera.pacteramap.vo.PMRemark.Data;
 
 /**
  * 备忘录详情界面
@@ -21,11 +23,15 @@ public class PMRemarkDetailsActivity extends PMActivity implements
 		OnClickListener {
 	private LinearLayout llBack, llRight;
 	private TextView tvMidTitle, tvRight;
+	private Intent preIntent;
+	private Data details;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.remark_details_activity);
+		preIntent = this.getIntent();
+		details = (Data) preIntent.getSerializableExtra("remark_data");
 		init();
 	}
 
@@ -37,7 +43,7 @@ public class PMRemarkDetailsActivity extends PMActivity implements
 		llBack.setVisibility(View.VISIBLE);
 		llBack.setOnClickListener(this);
 		tvMidTitle = (TextView) findViewById(R.id.tv_mid_title);
-		tvMidTitle.setText("详情");
+		tvMidTitle.setText(details.title);
 		tvRight = (TextView) findViewById(R.id.tv_base_right);
 		tvRight.setText("下一条");
 		llRight = (LinearLayout) findViewById(R.id.ll_tv_base_right);
