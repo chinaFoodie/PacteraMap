@@ -1,6 +1,7 @@
 package com.pactera.pacteramap.fragment;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -188,11 +189,20 @@ public class ChatAllHistoryFragment extends BaseFragment implements
 	}
 
 	private List<MessageBean> getMessage() {
-		listMsg = DataSupport
+		List<MessageBean> result = DataSupport
 				.where("msgTo = ? or msgFrom = ?",
 						share.getString(PMShareKey.USERNAME),
 						share.getString(PMShareKey.USERNAME))
 				.order("msgDate desc").find(MessageBean.class);
+		listMsg = new ArrayList<MessageBean>();
+		String temp = "";
+		for (int i = 0; i < result.size(); i++) {
+			if (!(temp.indexOf(result.get(i).getMsgFrom()) > 0)
+					&& !(temp.indexOf(result.get(i).getMsgTo()) > 0)) {
+				listMsg.add(result.get(i));
+				temp = result.get(i).getMsgFrom() + result.get(i).getMsgTo();
+			}
+		}
 		return listMsg;
 	}
 

@@ -186,7 +186,11 @@ public class PMWelcomeActivity extends PMActivity implements OnClickListener,
 			break;
 		// 贷款业务
 		case R.id.ll_main_loan_business:
-			T.showShort(this, "贷款业务还在开发中，敬请期待");
+			Intent loadIntent = new Intent(PMWelcomeActivity.this,
+					PMWebViewActivity.class);
+			loadIntent.putExtra("web_title", "贷款业务");
+			loadIntent.putExtra("web_url", "http://www.qq.com");
+			startActivity(loadIntent);
 			break;
 		// 备忘录
 		case R.id.ll_main_remark:
@@ -206,11 +210,19 @@ public class PMWelcomeActivity extends PMActivity implements OnClickListener,
 			break;
 		// 理财产品
 		case R.id.ll_main_financial_products:
-			T.showShort(this, "理财产品还在开发中，敬请期待");
+			Intent financialIntent = new Intent(PMWelcomeActivity.this,
+					PMWebViewActivity.class);
+			financialIntent.putExtra("web_title", "理财产品");
+			financialIntent.putExtra("web_url", "http://www.sina.com.cn/");
+			startActivity(financialIntent);
 			break;
 		// 积分活动
 		case R.id.ll_main_integral_events:
-			T.showShort(this, "积分活动还在开发中，敬请期待");
+			Intent integralIntent = new Intent(PMWelcomeActivity.this,
+					PMWebViewActivity.class);
+			integralIntent.putExtra("web_title", "积分活动");
+			integralIntent.putExtra("web_url", "https://www.taobao.com/");
+			startActivity(integralIntent);
 			break;
 		// 点击更换头像
 		case R.id.left_menu_person_info_head:
@@ -337,6 +349,10 @@ public class PMWelcomeActivity extends PMActivity implements OnClickListener,
 	/** 滚动图片点击事件 */
 	@Override
 	public void onImageClick(int position, View imageView) {
-
+		Intent webIntent = new Intent(PMWelcomeActivity.this,
+				PMWebViewActivity.class);
+		webIntent.putExtra("web_title", "行业动态");
+		webIntent.putExtra("web_url", "http://www.baidu.com");
+		startActivity(webIntent);
 	}
 }
